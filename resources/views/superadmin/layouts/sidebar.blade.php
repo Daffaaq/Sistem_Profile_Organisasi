@@ -46,7 +46,8 @@
                             href="{{ url('/superadmin/categoryArticle') }}">Articles</a>
                         <a class="collapse-item {{ request()->is('superadmin/categoryGalery') ? 'active' : '' }}"
                             href="{{ url('/superadmin/categoryGalery') }}">Galery</a>
-                        <a class="collapse-item" href="{{ url('/superadmin/categoryAspiration') }}">Aspiration</a>
+                        <a class="collapse-item {{ request()->is('superadmin/categoryAspiration') ? 'active' : '' }}"
+                            href="{{ url('/superadmin/categoryAspiration') }}">Aspiration</a>
                     </div>
                 </div>
             </li>
