@@ -1,0 +1,62 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashboardAdminController;
+use App\Http\Controllers\DashboardSuperadminController;
+use App\Http\Controllers\CategoryArticleController;
+use App\Http\Controllers\CategoryGaleryController;
+use App\Http\Controllers\CategoryAspirationController;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->group(function () {
+    Route::get('/', [DashboardSuperadminController::class, 'index'])->name('superadmin.dashboard');
+    Route::prefix('/')->group(function () {
+        Route::get('/categoryArticle', [CategoryArticleController::class, 'index']);
+        Route::get('/categoryArticle/create', [CategoryArticleController::class, 'create']);
+        Route::post('/categoryArticle/store', [CategoryArticleController::class, 'store']);
+        Route::get('/categoryArticle/edit/{id}', [CategoryArticleController::class, 'edit']);
+        Route::put('/categoryArticle/update/{id}', [CategoryArticleController::class, 'update']);
+        Route::delete('/categoryArticle/destroy/{id}', [CategoryArticleController::class, 'destroy']);
+        Route::get('/categoryArticle/data', [CategoryArticleController::class, 'json']);
+    });
+    Route::prefix('/')->group(function () {
+        Route::get('/categoryGalery', [CategoryGaleryController::class, 'index']);
+        Route::get('/categoryGalery/create', [CategoryGaleryController::class, 'create']);
+        Route::post('/categoryGalery/store', [CategoryGaleryController::class, 'store']);
+        Route::get('/categoryGalery/edit/{id}', [CategoryGaleryController::class, 'edit']);
+        Route::put('/categoryGalery/update/{id}', [CategoryGaleryController::class, 'update']);
+        Route::delete('/categoryGalery/destroy/{id}', [CategoryGaleryController::class, 'destroy']);
+        Route::get('/categoryGalery/data', [CategoryGaleryController::class, 'json']);
+    });
+    Route::prefix('/')->group(function () {
+        Route::get('/categoryAspiration', [CategoryAspirationController::class, 'index']);
+        Route::get('/categoryAspiration/create', [CategoryAspirationController::class, 'create']);
+        Route::post('/categoryAspiration/store', [CategoryAspirationController::class, 'store']);
+        Route::get('/categoryAspiration/edit/{id}', [CategoryAspirationController::class, 'edit']);
+        Route::put('/categoryAspiration/update/{id}', [CategoryAspirationController::class, 'update']);
+        Route::delete('/categoryAspiration/destroy/{id}', [CategoryAspirationController::class, 'destroy']);
+        Route::get('/categoryAspiration/data', [CategoryAspirationController::class, 'json']);
+    });
+});
+Route::middleware(['auth', 'check.role:admin'])->prefix('admin')->group(function () {
+    // Route::get('/', [DashboardKasubagController::class, 'ViewKasubag'])->name('kasubag.dashboard');
+    Route::get('/', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
+});
