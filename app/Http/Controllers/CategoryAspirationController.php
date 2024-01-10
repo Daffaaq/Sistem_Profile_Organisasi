@@ -10,6 +10,28 @@ use Illuminate\Support\Facades\Auth;
 
 class CategoryAspirationController extends Controller
 {
+    protected function getRedirectUrlBasedOnRole($userRole)
+    {
+        switch ($userRole) {
+            case 'superadmin':
+                return '/superadmin/categoryAspiration';
+            case 'admin':
+                return '/admin/categoryAspiration';
+            default:
+                return null;
+        }
+    }
+
+    protected function getViewBasedOnRole($viewName)
+    {
+        $userRole = auth()->user()->role;
+
+        if ($userRole == 'superadmin' || $userRole == 'admin') {
+            return view("$userRole.Category.Aspiration.$viewName");
+        }
+
+        return redirect('/login')->with('error', 'Unauthorized access. Please log in with the correct account.');
+    }
     public function json(){
         $data = category_aspiration::all();
          $index = 1;
@@ -42,47 +64,30 @@ class CategoryAspirationController extends Controller
     }
     public function index()
     {
-        $userRole = auth()->user()->role; // Mendapatkan peran pengguna
-
-        if ($userRole == 'superadmin') {
-            return view('superadmin.Category.Aspiration.index');
-        } elseif ($userRole == 'admin') {
-            // Tambahkan logika atau tampilan yang sesuai untuk admin
-            return view('admin.Category.Aspiration.index');
-        }
-
-        return redirect('/login')->with('error', 'Unauthorized access. Please log in with the correct account.');
+        return $this->getViewBasedOnRole('index');
     }
 
     public function create()
     {
-        $userRole = auth()->user()->role;
-        if ($userRole == 'superadmin') {
-            return view('superadmin.Category.Aspiration.create');
-        } elseif ($userRole == 'admin') {
-            return view('admin.Category.Aspiration.create');
-        }
-
-        return redirect('/login')->with('error', 'Unauthorized access. Please log in with the correct account.');
+        return $this->getViewBasedOnRole('create');
     }
 
     public function store(CategoryAspirationRequest $request)
     {
-        category_aspiration::create($request->all());
-        $userRole = auth()->user()->role;
-        if ($userRole == 'superadmin') {
-            return redirect('/superadmin/categoryAspiration')
-            ->with('success', 'Category Aspirasi created successfully.');
-        } elseif ($userRole == 'admin') {
-            return redirect('/admin/categoryAspiration')->with('success', 'Category Aspirasi created successfully.');
-        }
-        // Jika peran tidak sesuai, arahkan kembali ke halaman login
-    return redirect('/login')->with('error', 'Unauthorized access. Please log in with the correct account.');
+        $categoryAspiration = category_aspiration::create($request->all());
+        $redirectUrl = $this->getRedirectUrlBasedOnRole(auth()->user()->role);
+
+        return $redirectUrl
+            ? redirect($redirectUrl)->with('success', 'Category Aspiration created successfully.')
+            : redirect('/login')->with('error', 'Unauthorized access. Please log in with the correct account.');
     }
 
     public function edit($id)
     {
         $categoryAspiration = category_aspiration::find($id);
+        if (!$categoryAspiration) {
+            return redirect()->back()->with('error', 'Category Aspiration not found.');
+        }
         $userRole = auth()->user()->role;
         if ($userRole == 'superadmin') {
             return view('superadmin.Category.Aspiration.edit', compact('categoryAspiration'));
@@ -90,29 +95,26 @@ class CategoryAspirationController extends Controller
              return view('admin.Category.Aspiration.edit', compact('categoryAspiration'));
         }
         return redirect('/login')->with('error', 'Unauthorized access. Please log in with the correct account.');
+
     }
 
     public function update(CategoryAspirationRequest $request, $id)
     {
-
         $categoryAspiration = category_aspiration::find($id);
         $categoryAspiration->update($request->all());
-        $userRole = auth()->user()->role;
-        if ($userRole == 'superadmin') {
-            return redirect('/superadmin/categoryAspiration')
-            ->with('success', 'Category Aspirasi updated successfully.');
-        } elseif ($userRole == 'admin') {
-            return redirect('/admin/categoryAspiration')
-            ->with('success', 'Category Aspirasi created successfully.');
-        }
-        // Jika peran tidak sesuai, arahkan kembali ke halaman login
-    return redirect('/login')->with('error', 'Unauthorized access. Please log in with the correct account.');
+
+        $redirectUrl = $this->getRedirectUrlBasedOnRole(auth()->user()->role);
+
+        return $redirectUrl
+            ? redirect($redirectUrl)->with('success', 'Category Aspiration updated successfully.')
+            : redirect('/login')->with('error', 'Unauthorized access. Please log in with the correct account.');
     }
 
     public function destroy($id)
     {
         category_aspiration::destroy($id);
-        session()->flash('success', 'Category Aspirasi deleted successfully.');
-        return response()->json(['success' => 'Category Aspirasi deleted successfully.']);
+        session()->flash('success', 'Category Aspiration deleted successfully.');
+
+        return response()->json(['success' => 'Category Aspiration deleted successfully.']);
     }
 }
