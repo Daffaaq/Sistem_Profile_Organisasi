@@ -23,8 +23,8 @@
     margin-bottom: 0; /* Menghapus margin di bagian bawah form-box */
 }
 
-.btn-primary {
-    width: 50%; /* Menyusun tombol submit agar mengambil lebar maksimal */
+.custom-button {
+    width: 50%;
     margin-left: auto;
     margin-right: auto;
 }

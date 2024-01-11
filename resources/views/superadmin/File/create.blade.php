@@ -58,7 +58,7 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Upload File</button>
+                    <button type="submit" class="btn btn-primary custom-button">Upload File</button>
                 </div>
             </form>
         </div>
