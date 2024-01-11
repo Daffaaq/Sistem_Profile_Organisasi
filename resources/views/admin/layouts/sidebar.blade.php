@@ -54,7 +54,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ url('/admin/File') }}">
                     <i class="fas fa-fw fa-check"></i>
                     <span>Files</span></a>
             </li>

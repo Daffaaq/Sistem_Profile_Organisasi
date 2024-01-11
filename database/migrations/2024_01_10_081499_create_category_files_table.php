@@ -13,16 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('category_files', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('path');
-            $table->date('file_date_created');
-            $table->time('file_time_created');
-            $table->unsignedBigInteger('category_files_id');
+            $table->string('name_category_files');
             $table->timestamps();
-
-            $table->foreign('category_files_id')->references('id')->on('category_files')->onDelete('cascade');
         });
     }
 
@@ -33,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('category_files');
     }
 };

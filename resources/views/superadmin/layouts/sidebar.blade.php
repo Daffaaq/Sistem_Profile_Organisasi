@@ -48,6 +48,8 @@
                             href="{{ url('/superadmin/categoryGalery') }}">Galery</a>
                         <a class="collapse-item {{ request()->is('superadmin/categoryAspiration') ? 'active' : '' }}"
                             href="{{ url('/superadmin/categoryAspiration') }}">Aspiration</a>
+                        <a class="collapse-item {{ request()->is('superadmin/categoryFile') ? 'active' : '' }}"
+                            href="{{ url('/superadmin/categoryFile') }}">File</a>
                     </div>
                 </div>
             </li>
@@ -68,7 +70,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ url('/superadmin/File') }}">
                     <i class="fas fa-fw fa-check"></i>
                     <span>Files</span></a>
             </li>

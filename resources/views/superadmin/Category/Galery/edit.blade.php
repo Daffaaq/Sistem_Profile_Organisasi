@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Edit Category Article</div>
+                    <div class="card-header">Edit Category Galery</div>
                     <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -20,7 +20,7 @@
                             @method('PUT')
                             <!-- Name -->
                             <div class="form-group">
-                                <label for="name">Nama kategori Artikel: </label>
+                                <label for="name">Nama kategori Galeri: </label>
                                 <input type="text" name="name_category_galerie" id="name_category_galerie"
                                     class="form-control" value="{{ $categoryGaleri->name_category_galerie }}" required>
                             </div>

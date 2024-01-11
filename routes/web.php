@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardSuperadminController;
 use App\Http\Controllers\CategoryArticleController;
 use App\Http\Controllers\CategoryGaleryController;
 use App\Http\Controllers\CategoryAspirationController;
+use App\Http\Controllers\CategoryFileController;
 use App\Http\Controllers\FileController;
 
 /*
@@ -57,14 +58,23 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::get('/categoryAspiration/data', [CategoryAspirationController::class, 'json']);
     });
     Route::prefix('/')->group(function () {
-        Route::get('/File', [FileController::class, 'index']);
-        Route::get('/File/create', [FileController::class, 'create']);
-        Route::post('/File/store', [FileController::class, 'store']);
-        Route::get('/File/edit/{id}', [FileController::class, 'edit']);
-        Route::put('/File/update/{id}', [FileController::class, 'update']);
-        Route::delete('/File/destroy/{id}', [FileController::class, 'destroy']);
-        Route::get('/File/data', [FileController::class, 'json']);
+        Route::get('/categoryFile', [CategoryFileController::class, 'index']);
+        Route::get('/categoryFile/create', [CategoryFileController::class, 'create']);
+        Route::post('/categoryFile/store', [CategoryFileController::class, 'store']);
+        Route::get('/categoryFile/edit/{id}', [CategoryFileController::class, 'edit']);
+        Route::put('/categoryFile/update/{id}', [CategoryFileController::class, 'update']);
+        Route::delete('/categoryFile/destroy/{id}', [CategoryFileController::class, 'destroy']);
+        Route::get('/categoryFile/data', [CategoryFileController::class, 'json']);
     });
+    // Route::prefix('/')->group(function () {
+    //     Route::get('/File', [FileController::class, 'index']);
+    //     Route::get('/File/create', [FileController::class, 'create']);
+    //     Route::post('/File/store', [FileController::class, 'store']);
+    //     Route::get('/File/edit/{id}', [FileController::class, 'edit']);
+    //     Route::put('/File/update/{id}', [FileController::class, 'update']);
+    //     Route::delete('/File/destroy/{id}', [FileController::class, 'destroy']);
+    //     Route::get('/File/data', [FileController::class, 'json']);
+    // });
 });
 Route::middleware(['auth', 'check.role:admin'])->prefix('admin')->group(function () {
     // Route::get('/', [DashboardKasubagController::class, 'ViewKasubag'])->name('kasubag.dashboard');
@@ -77,6 +87,15 @@ Route::middleware(['auth', 'check.role:admin'])->prefix('admin')->group(function
         Route::put('/categoryAspiration/update/{id}', [CategoryAspirationController::class, 'update']);
         Route::delete('/categoryAspiration/destroy/{id}', [CategoryAspirationController::class, 'destroy']);
         Route::get('/categoryAspiration/data', [CategoryAspirationController::class, 'jsonAdmin']);
+    });
+    Route::prefix('/')->group(function () {
+        Route::get('/categoryFile', [CategoryAspirationController::class, 'index']);
+        Route::get('/categoryFile/create', [CategoryAspirationController::class, 'create']);
+        Route::post('/categoryFile/store', [CategoryAspirationController::class, 'store']);
+        Route::get('/categoryFile/edit/{id}', [CategoryAspirationController::class, 'edit']);
+        Route::put('/categoryFile/update/{id}', [CategoryAspirationController::class, 'update']);
+        Route::delete('/categoryFile/destroy/{id}', [CategoryAspirationController::class, 'destroy']);
+        Route::get('/categoryFile/data', [CategoryAspirationController::class, 'jsonAdmin']);
     });
     Route::prefix('/')->group(function () {
         Route::get('/File', [FileController::class, 'index']);
