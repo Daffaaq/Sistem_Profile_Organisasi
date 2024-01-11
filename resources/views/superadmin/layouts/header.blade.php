@@ -15,6 +15,12 @@
     <link href="{{ asset('SbAdmin/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Hapus atribut integrity dari tag link dan script -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js"></script>
+
+
     <!-- Include DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
@@ -39,6 +45,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('SbAdmin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('SbAdmin/css/form-upload.css') }}" rel="stylesheet">
 </head>
 
 <body>

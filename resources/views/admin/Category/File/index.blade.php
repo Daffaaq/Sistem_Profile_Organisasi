@@ -1,13 +1,8 @@
-@extends('superadmin.layouts.index')
+@extends('admin.layouts.index')
 @section('container')
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
-        </div>
-    @endif
-    @if (session('error'))
-        <div class="alert alert-danger">
-            {{ session('error') }}
         </div>
     @endif
     <div class="card shadow mb-4">
@@ -15,7 +10,7 @@
             <h6 class="m-0 font-weight-bold text-primary">Category File Management</h6>
         </div>
         <div class="card-body">
-            <a href="{{ url('/superadmin/categoryFile/create') }}" class="btn btn-success float-right mb-3">
+            <a href="{{ url('/admin/categoryFile/create') }}" class="btn btn-success float-right mb-3">
                 <i class="fas fa-plus"></i> Category File
             </a>
             <div class="table-responsive">
@@ -38,7 +33,7 @@
             $('#categoryFileTable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ url('/superadmin/categoryFile/data') }}',
+                ajax: '{{ url('/admin/categoryFile/data') }}',
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',

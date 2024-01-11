@@ -4,7 +4,8 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Edit Category Aspiration</div>
+                    <div class="card-header">Create New Category File</div>
+
                     <div class="card-body">
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -15,21 +16,19 @@
                                 </ul>
                             </div>
                         @endif
-                        <form method="POST"
-                            action="{{ url('/admin/categoryAspiration/update/' . $categoryAspiration->id) }}">
+
+                        <form method="POST" action="{{ url('/admin/categoryFile/store') }}">
                             @csrf
-                            @method('PUT')
-                            <!-- Name -->
-                            <div class="form-group">
-                                <label for="name">Nama kategori Aspiration: </label>
-                                <input type="text" name="name_category_aspirations" id="name_category_aspirations"
-                                    class="form-control" value="{{ $categoryAspiration->name_category_aspirations }}"
-                                    required>
-                            </div>
+                                <!-- Name -->
+                                <div class="form-group">
+                                    <label for="name">Nama kategori File: </label>
+                                    <input type="text" name="name_category_files" id="name_category_files"
+                                        class="form-control" required>
+                                </div>
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <a href="{{ url('/admin/categoryAspiration') }}" class="btn btn-secondary">Back</a>
-                                    <button type="submit" class="btn btn-primary">Update Category</button>
+                                    <a href="{{ url('/admin/categoryFile') }}" class="btn btn-secondary">Back</a>
+                                    <button type="submit" class="btn btn-primary">Create Category</button>
                                 </div>
                             </div>
                         </form>

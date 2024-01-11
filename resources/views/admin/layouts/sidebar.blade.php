@@ -43,6 +43,8 @@
                         <h6 class="collapse-header">Custom Category:</h6>
                         <a class="collapse-item {{ request()->is('admin/categoryAspiration') ? 'active' : '' }}"
                             href="{{ url('/admin/categoryAspiration') }}">Aspiration</a>
+                        <a class="collapse-item {{ request()->is('admin/categoryFile') ? 'active' : '' }}"
+                            href="{{ url('/admin/categoryFile') }}">File</a>
                     </div>
                 </div>
             </li>
