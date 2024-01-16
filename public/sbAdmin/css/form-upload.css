@@ -25,6 +25,7 @@
 
 .custom-button {
     width: 50%;
-    margin-left: auto;
-    margin-right: auto;
+}
+.custom-button-back {
+    width: 49%;
 }

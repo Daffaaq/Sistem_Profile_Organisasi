@@ -55,8 +55,10 @@
                                 Back</button>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <button type="submit" class="btn btn-primary custom-button">Upload File</button>
+                    <div class="col-md-12 d-flex justify-content-center">
+                        <a href="{{ url('/superadmin/File') }}"
+                            class="btn btn-secondary custom-button-back mx-auto mr-2">Back</a>
+                        <button type="submit" class="btn btn-primary custom-button mx-auto ml-2">Upload File</button>
                     </div>
                 </div>
             </form>
@@ -109,27 +111,26 @@
 
         // Function to handle Go Back button click event
         // Function to handle Go Back button click event
-function goBack() {
-    // Perform actions to go back to the initial state
-    // For example, reset form fields or clear the preview container
+        function goBack() {
+            // Perform actions to go back to the initial state
+            // For example, reset form fields or clear the preview container
 
-    // Hapus iframe jika ada
-    if (iframe) {
-        iframe.parentNode.removeChild(iframe);
-    }
+            // Hapus iframe jika ada
+            if (iframe) {
+                iframe.parentNode.removeChild(iframe);
+            }
 
-    // Clear the selected file
-    selectedFile = null;
+            // Clear the selected file
+            selectedFile = null;
 
-    // Tidak perlu mengosongkan nilai input file
-    // document.getElementById('file-input').value = '';
+            // Tidak perlu mengosongkan nilai input file
+            // document.getElementById('file-input').value = '';
 
-    // Hide the Go Back button
-    document.querySelector('.btn-warning').style.display = 'none';
+            // Hide the Go Back button
+            document.querySelector('.btn-warning').style.display = 'none';
 
-    // Show the Preview File button
-    document.querySelector('.btn-secondary').style.display = 'inline-block';
-}
-
+            // Show the Preview File button
+            document.querySelector('.btn-secondary').style.display = 'inline-block';
+        }
     </script>
 @endsection
