@@ -19,30 +19,16 @@
             <div class="upload-title">
                 <h4>File Upload</h4>
             </div>
-            <form action="{{ url('/superadmin/File/store') }}" method="post" enctype="multipart/form-data" id="file-upload"
-                class="dropzone">
+            <form action="{{ url('/superadmin/File/store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <div class="upload-box">
                             <div class="mb-3">
-                                <label for="file" class="form-label visually-hidden">Choose File:</label>
-                                <div class="dropzone" id="file-dropzone">
-                                    <input type="file" name="file" id="file-input"
-                                        class="form-control visually-hidden" accept=".pdf, .doc, .docx"
-                                        style="display:none;" required>
-                                    <div class="dz-message" data-dz-message>
-                                        <div class="icon" onclick="document.getElementById('file-input').click()">
-                                            <i class="fas fa-cloud-upload-alt fa-3x"></i>
-                                        </div>
-                                        <p>Click or drag & drop to upload</p>
-                                    </div>
-                                </div>
+                                <label for="file" class="form-label">Choose File:</label>
+                                <input type="file" name="file" id="file-input" class="form-control"
+                                    accept=".pdf, .doc, .docx" required>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="form-box">
                             <div class="mb-3">
                                 <label for="name" class="form-label">File Name:</label>
                                 <input type="text" name="name" id="name" class="form-control" required>
@@ -56,18 +42,94 @@
                                     @endforeach
                                 </select>
                             </div>
+
+                            <!-- Preview Container -->
+                            <div id="file-preview-container"></div>
+
+                            <!-- Button for Preview -->
+                            <button type="button" class="btn btn-secondary mt-2" onclick="previewFile()">Preview
+                                File</button>
+
+                            <!-- Button to Go Back -->
+                            <button type="button" class="btn btn-warning mt-2" onclick="goBack()" style="display:none;">Go
+                                Back</button>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary custom-button">Upload File</button>
+                    <div class="col-md-12">
+                        <button type="submit" class="btn btn-primary custom-button">Upload File</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
-    <script type="text/javascript">
-        Dropzone.options.fileUpload = {
-            maxFilesize: 1000,
-            acceptedFiles: ".pdf, .doc, .docx"
-            // previewTemplate: '',
-        };
+
+    <script>
+        // Simpan informasi tentang file yang dipilih
+        let selectedFile = null;
+
+        // Simpan referensi ke iframe
+        let iframe = null;
+
+        // Function to handle preview button click event
+        function previewFile() {
+            const fileInput = document.getElementById('file-input');
+            const previewContainer = document.getElementById('file-preview-container');
+            const goBackButton = document.querySelector('.btn-warning');
+            const previewButton = document.querySelector('.btn-secondary'); // Tombol "Preview File"
+
+            // Clear previous preview
+            previewContainer.innerHTML = '';
+
+            // Check if a file is selected
+            if (fileInput.files.length > 0) {
+                selectedFile = fileInput.files[0];
+
+                // Check the file type
+                if (selectedFile.type.includes('pdf')) {
+                    // Create an iframe
+                    iframe = document.createElement('iframe');
+                    iframe.width = '100%';
+                    iframe.height = '600px';
+                    iframe.src = URL.createObjectURL(selectedFile);
+
+                    // Append the iframe to the preview container
+                    previewContainer.appendChild(iframe);
+
+                    // Show the Go Back button
+                    goBackButton.style.display = 'inline-block';
+
+                    // Hide the Preview File button
+                    previewButton.style.display = 'none';
+                } else {
+                    // Display a message for non-PDF files
+                    previewContainer.innerHTML = `<p>No preview available for this file type.</p>`;
+                }
+            }
+        }
+
+        // Function to handle Go Back button click event
+        // Function to handle Go Back button click event
+function goBack() {
+    // Perform actions to go back to the initial state
+    // For example, reset form fields or clear the preview container
+
+    // Hapus iframe jika ada
+    if (iframe) {
+        iframe.parentNode.removeChild(iframe);
+    }
+
+    // Clear the selected file
+    selectedFile = null;
+
+    // Tidak perlu mengosongkan nilai input file
+    // document.getElementById('file-input').value = '';
+
+    // Hide the Go Back button
+    document.querySelector('.btn-warning').style.display = 'none';
+
+    // Show the Preview File button
+    document.querySelector('.btn-secondary').style.display = 'inline-block';
+}
+
     </script>
 @endsection
