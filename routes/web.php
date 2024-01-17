@@ -74,6 +74,7 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::put('/File/update/{id}', [FileController::class, 'update']);
         Route::delete('/File/destroy/{id}', [FileController::class, 'destroy']);
         Route::get('/File/data', [FileController::class, 'json']);
+        Route::get('/File/data/upload/{id}', [FileController::class, 'serveFile']);
     });
 });
 Route::middleware(['auth', 'check.role:admin'])->prefix('admin')->group(function () {

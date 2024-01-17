@@ -3,12 +3,32 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\file;
 use App\Models\Category_file;
+use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
 
 class FileController extends Controller
 {
+    public function json()
+    {
+        $files = File::leftJoin('category_files', 'files.category_files_id', '=', 'category_files.id')
+        ->select('files.*', 'category_files.name_category_files as category_name')
+        ->get();
+
+        return DataTables::of($files)
+            ->addColumn('DT_RowIndex', function ($file) {
+                return $file->id;
+            })
+            ->addColumn('action', function ($file) {
+                // return '<a href="#" class="delete-category" data-url="'.route('your_delete_route', $file->id).'">Delete</a>';
+                // Gantilah 'your_delete_route' dengan nama rute yang sesuai untuk menghapus file
+            })
+            ->rawColumns(['action'])
+            ->toJson();
+    }
+
     public function index(){
         $userRole = auth()->user()->role; // Mendapatkan peran pengguna
         $categories = Category_file::all();
@@ -62,5 +82,17 @@ class FileController extends Controller
         }
 
         return redirect('/superadmin/File/create')->with('failed', 'Gagal mengunggah file.');
+    }
+
+    public function serveFile($id)
+    {
+        $file = file::findOrFail($id);
+        $path = Storage::disk('local')->path($file->path);
+
+        if (Storage::disk('local')->exists($file->path)) {
+            return response()->file($path);
+        } else {
+            abort(404, 'File not found');
+        }
     }
 }

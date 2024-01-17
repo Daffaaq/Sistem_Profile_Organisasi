@@ -37,53 +37,69 @@
         </div>
     </div>
     <script>
-        //     $(document).ready(function() {
-        //         $('#FileTable').DataTable({
-        //             processing: true,
-        //             serverSide: true,
-        //             ajax: '{{ url('/superadmin/categoryFile/data') }}',
-        //             columns: [{
-        //                     data: 'DT_RowIndex',
-        //                     name: 'DT_RowIndex',
-        //                     orderable: false,
-        //                     searchable: false
-        //                 },
-        //                 {
-        //                     data: 'name_category_files',
-        //                     name: 'name_category_files'
-        //                 },
-        //                 {
-        //                     data: 'action',
-        //                     name: 'action',
-        //                     orderable: false,
-        //                     searchable: false
-        //                 },
-        //             ]
-        //         });
+        var fileDetailsUrl = "{{ url('superadmin/File/data/upload') }}"; // Update the URL
+        $(document).ready(function() {
+            $('#FileTable').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: '{{ url('/superadmin/File/data') }}',
+                columns: [{
+                        data: 'DT_RowIndex',
+                        name: 'DT_RowIndex',
+                        orderable: false,
+                        searchable: false
+                    },
+                    {
+                        data: 'name',
+                        name: 'name',
+                        render: function(data, type, row) {
+                            return '<a href="' + fileDetailsUrl + '/' + row.id +
+                                '" target="_blank">' + data + '</a>';
+                        }
+                    },
+                    {
+                        data: 'file_time_created',
+                        name: 'file_time_created'
+                    },
+                    {
+                        data: 'file_date_created',
+                        name: 'file_date_created'
+                    },
+                    {
+                        data: 'category_name',
+                        name: 'category_name'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
 
-        //         $('#FileTable').on('click', 'a.delete-category', function(e) {
-        //             e.preventDefault();
-        //             var deleteUrl = $(this).data('url');
+            $('#FileTable').on('click', 'a.delete-category', function(e) {
+                e.preventDefault();
+                var deleteUrl = $(this).data('url');
 
-        //             if (confirm('Are you sure?')) {
-        //                 fetch(deleteUrl, {
-        //                         method: 'DELETE',
-        //                         headers: {
-        //                             'X-CSRF-TOKEN': '{{ csrf_token() }}'
-        //                         },
-        //                     })
-        //                     .then(response => response.json())
-        //                     .then(data => {
-        //                         $('#categoryGaleryTable').DataTable().ajax.reload();
-        //                         location.reload();
-        //                     })
-        //                     .catch(error => {
-        //                         // Handle error
-        //                         console.error(error);
-        //                     });
-        //             }
-        //         });
-        //     });
-        // 
+                if (confirm('Are you sure?')) {
+                    fetch(deleteUrl, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            $('#categoryGaleryTable').DataTable().ajax.reload();
+                            location.reload();
+                        })
+                        .catch(error => {
+                            // Handle error
+                            console.error(error);
+                        });
+                }
+            });
+        });
     </script>
 @endsection
