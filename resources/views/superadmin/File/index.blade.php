@@ -53,8 +53,9 @@
                         data: 'name',
                         name: 'name',
                         render: function(data, type, row) {
+                            var timestamp = new Date().getTime(); // Generate a timestamp
                             return '<a href="' + fileDetailsUrl + '/' + row.id +
-                                '" target="_blank">' + data + '</a>';
+                                '?t=' + timestamp + '" target="_blank">' + data + '</a>';
                         }
                     },
                     {
@@ -78,7 +79,7 @@
                 ]
             });
 
-            $('#FileTable').on('click', 'a.delete-category', function(e) {
+            $('#FileTable').on('click', 'a.delete-file', function(e) {
                 e.preventDefault();
                 var deleteUrl = $(this).data('url');
 
