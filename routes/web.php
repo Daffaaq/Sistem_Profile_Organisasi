@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryGaleryController;
 use App\Http\Controllers\CategoryAspirationController;
 use App\Http\Controllers\CategoryFileController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,9 @@ Auth::routes();
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->group(function () {
+
     Route::get('/', [DashboardSuperadminController::class, 'index'])->name('superadmin.dashboard');
+
     Route::prefix('/')->group(function () {
         Route::get('/categoryArticle', [CategoryArticleController::class, 'index']);
         Route::get('/categoryArticle/create', [CategoryArticleController::class, 'create']);
@@ -39,6 +42,7 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::delete('/categoryArticle/destroy/{id}', [CategoryArticleController::class, 'destroy']);
         Route::get('/categoryArticle/data', [CategoryArticleController::class, 'json']);
     });
+
     Route::prefix('/')->group(function () {
         Route::get('/categoryGalery', [CategoryGaleryController::class, 'index']);
         Route::get('/categoryGalery/create', [CategoryGaleryController::class, 'create']);
@@ -48,6 +52,7 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::delete('/categoryGalery/destroy/{id}', [CategoryGaleryController::class, 'destroy']);
         Route::get('/categoryGalery/data', [CategoryGaleryController::class, 'json']);
     });
+
     Route::prefix('/')->group(function () {
         Route::get('/categoryAspiration', [CategoryAspirationController::class, 'index']);
         Route::get('/categoryAspiration/create', [CategoryAspirationController::class, 'create']);
@@ -57,6 +62,7 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::delete('/categoryAspiration/destroy/{id}', [CategoryAspirationController::class, 'destroy']);
         Route::get('/categoryAspiration/data', [CategoryAspirationController::class, 'json']);
     });
+
     Route::prefix('/')->group(function () {
         Route::get('/categoryFile', [CategoryFileController::class, 'index']);
         Route::get('/categoryFile/create', [CategoryFileController::class, 'create']);
@@ -66,6 +72,7 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::delete('/categoryFile/destroy/{id}', [CategoryFileController::class, 'destroy']);
         Route::get('/categoryFile/data', [CategoryFileController::class, 'json']);
     });
+
     Route::prefix('/')->group(function () {
         Route::get('/File', [FileController::class, 'index']);
         Route::get('/File/create', [FileController::class, 'create']);
@@ -76,7 +83,21 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::get('/File/data', [FileController::class, 'json']);
         Route::get('/File/data/upload/{id}', [FileController::class, 'serveFile']);
     });
+
+    Route::prefix('/')->group(function () {
+        Route::get('/Article', [ArticleController::class, 'index']);
+        Route::get('/Article/create', [ArticleController::class, 'create']);
+        Route::post('/Article/store', [ArticleController::class, 'store']);
+        Route::get('/Article/edit/{id}', [ArticleController::class, 'edit']);
+        Route::put('/Article/update/{id}', [ArticleController::class, 'update']);
+        Route::delete('/Article/destroy/{id}', [ArticleController::class, 'destroy']);
+        Route::get('/Article/data', [ArticleController::class, 'json']);
+        Route::get('/Article/data/upload/{id}', [ArticleController::class, 'serveFile']);
+    });
 });
+
+
+
 Route::middleware(['auth', 'check.role:admin'])->prefix('admin')->group(function () {
     // Route::get('/', [DashboardKasubagController::class, 'ViewKasubag'])->name('kasubag.dashboard');
     Route::get('/', [DashboardAdminController::class, 'index'])->name('admin.dashboard');

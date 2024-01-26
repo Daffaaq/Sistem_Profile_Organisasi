@@ -12,18 +12,23 @@
     @endif
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Category Article Management</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Article Management</h6>
         </div>
         <div class="card-body">
-            <a href="{{ url('/superadmin/categoryArticle/create') }}" class="btn btn-success float-right mb-3">
-                <i class="fas fa-plus"></i> Category Article
+            <a href="{{ url('/superadmin/categoryFile/create') }}" class="btn btn-success float-right mb-3">
+                <i class="fas fa-plus"></i> Article
             </a>
             <div class="table-responsive">
-                <table class="table table-bordered" id="categoryArticleTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="ArticleTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Nama Kategori</th>
+                            <th>Category Article</th>
+                            <th>Tittle Article</th>
+                            <th>Descriptions Article</th>
+                            <th>Date Created Article</th>
+                            <th>Time Created Article</th>
+                            <th>Image Article</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -35,10 +40,10 @@
     </div>
     <script>
         $(document).ready(function() {
-            $('#categoryArticleTable').DataTable({
+            $('#ArticleTable').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{{ url('/superadmin/categoryArticle/data') }}',
+                ajax: '{{ url('/superadmin/Article/data') }}',
                 columns: [{
                         data: 'DT_RowIndex',
                         name: 'DT_RowIndex',
@@ -46,8 +51,12 @@
                         searchable: false
                     },
                     {
-                        data: 'name_category_article',
-                        name: 'name_category_article'
+                        data: 'title',
+                        name: 'title'
+                    },
+                    {
+                        data: 'title',
+                        name: 'title'
                     },
                     {
                         data: 'action',
@@ -58,7 +67,7 @@
                 ]
             });
 
-            $('#categoryArticleTable').on('click', 'a.delete-category', function(e) {
+            $('#ArticleTable').on('click', 'a.delete-category', function(e) {
                 e.preventDefault();
                 var deleteUrl = $(this).data('url');
 
@@ -71,8 +80,7 @@
                         })
                         .then(response => response.json())
                         .then(data => {
-                            // Handle success, e.g., reload the DataTable
-                            $('#categoryArticleTable').DataTable().ajax.reload();
+                            $('#categoryGaleryTable').DataTable().ajax.reload();
                             location.reload();
                         })
                         .catch(error => {

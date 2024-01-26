@@ -54,7 +54,7 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ url('/superadmin/Article') }}">
                     <i class="fas fa-fw fa-exclamation-triangle"></i>
                     <span>Article</span></a>
             </li>
