@@ -34,9 +34,25 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMain"
+                    aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="fas fa-fw fa-building"></i>
+                    <span>Main</span>
+                </a>
+                <div id="collapseMain" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Main:</h6>
+                        <a class="collapse-item {{ request()->is('superadmin/Profile') ? 'active' : '' }}"
+                            href="{{ url('/superadmin/Profile') }}">organizational Profile</a>
+                        <a class="collapse-item" href="#">organizational structure</a>
+                    </div>
+                </div>
+            </li>
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
+                    <i class="fas fa-fw fa-layer-group"></i>
                     <span>Category</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -56,24 +72,24 @@
 
             <li class="nav-item @active('superadmin/Article')">
                 <a class="nav-link" href="{{ url('/superadmin/Article') }}">
-                    <i class="fas fa-fw fa-exclamation-triangle"></i>
+                    <i class="fas fa-fw fa-newspaper"></i>
                     <span>Article</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-exclamation-triangle"></i>
+                    <i class="fas fa-fw fa-camera"></i>
                     <span>Galery</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-exclamation-triangle"></i>
+                    <i class="fas fa-fw fa-inbox"></i>
                     <span>Aspiration</span></a>
             </li>
 
             <li class="nav-item @active('superadmin/File')">
                 <a class="nav-link" href="{{ url('/superadmin/File') }}">
-                    <i class="fas fa-fw fa-check"></i>
+                    <i class="fas fa-fw fa-file"></i>
                     <span>Files</span></a>
             </li>
 
@@ -87,7 +103,7 @@
 
             <li class="nav-item @active('superadmin/Users')">
                 <a class="nav-link" href="{{ url('/superadmin/Users') }}">
-                    <i class="fas fa-fw fa-check"></i>
+                    <i class="fas fa-fw fa-user"></i>
                     <span>Users</span></a>
             </li>
 

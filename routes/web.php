@@ -11,6 +11,7 @@ use App\Http\Controllers\CategoryFileController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,16 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
 
     Route::get('/', [DashboardSuperadminController::class, 'index'])->name('superadmin.dashboard');
 
+    Route::prefix('/')->group(function () {
+        Route::get('/Profile', [ProfileController::class, 'index']);
+        Route::get('/Profile/create', [ProfileController::class, 'create']);
+        Route::post('/Profile/store', [ProfileController::class, 'store']);
+        Route::get('/Profile/edit/{id}', [ProfileController::class, 'edit']);
+        Route::put('/Profile/update/{id}', [ProfileController::class, 'update']);
+        Route::delete('/Profile/destroy/{id}', [ProfileController::class, 'destroy']);
+        Route::get('/Profile/data', [ProfileController::class, 'json']);
+    });
+    
     Route::prefix('/')->group(function () {
         Route::get('/categoryArticle', [CategoryArticleController::class, 'index']);
         Route::get('/categoryArticle/create', [CategoryArticleController::class, 'create']);
