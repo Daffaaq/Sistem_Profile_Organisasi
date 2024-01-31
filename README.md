@@ -88,3 +88,19 @@ Not Register
 https://startbootstrap.com/theme/sb-admin-2
 
 
+## Pembuat
+
+Repository ini berisi contoh kode CRUD sederhana dengan Laravel. Repository ini dapat digunakan untuk belajar CRUD Laravel secara mandiri, **tetapi jangan gunakan sebagai Tugas Akhir Mata kuliah atau Project Magang.** Kalau Anda menggunakan repository ini untuk Tugas Akhir Mata kuliah atau Project Magang **Anda Tidak akan Mempunyai Daya Juang Tinggi Dalam Mengerjakan Sesuatu**. sekarang kan banyak ChatGPT/Bard Ai/ Bing silahkan digunakan itu aja dari pada hanya Clone Repository milik orang lain tanpa berusaha sendiri. Repository ini hanya berisi contoh kode sederhana, tidak ada yang spesial di dalamnya. Anda bisa menemukan contoh kode CRUD Laravel yang lebih baik di internet.
+
+**Jika Anda ingin membuat Tugas Akhir Mata kuliah atau Project Magang yang bagus, Anda harus Membuat Sendiri.** Anda harus membuat sesuatu yang baru dan inovatif. Anda harus membuat sesuatu yang akan membuat Anda menonjol dari yang lain.
+
+## KATA-KATA
+
+**BISA KARENA TERPAKSA LEBIH BAIK DARI PADA TIDAK SAMA SEKALI**
+
+
+**SALAM HANGAT**
+|--------|
+|**ACHE**|
+
+
