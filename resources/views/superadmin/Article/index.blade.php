@@ -120,7 +120,7 @@
                 ]
             });
 
-            $('#ArticleTable').on('click', 'a.delete-file', function(e) {
+            $('#ArticleTable').on('click', 'a.delete-article', function(e) {
                 e.preventDefault();
                 var deleteUrl = $(this).data('url');
 
