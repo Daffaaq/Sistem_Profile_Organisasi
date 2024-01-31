@@ -10,6 +10,7 @@ use App\Http\Controllers\CategoryAspirationController;
 use App\Http\Controllers\CategoryFileController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -94,6 +95,16 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::delete('/Article/destroy/{id}', [ArticleController::class, 'destroy']);
         Route::get('/Article/data', [ArticleController::class, 'json']);
         Route::get('/Article/data/upload/{id}', [ArticleController::class, 'serveFile']);
+    });
+
+    Route::prefix('/')->group(function () {
+        Route::get('/Users', [UserController::class, 'index']);
+        Route::get('/Users/create', [UserController::class, 'create']);
+        Route::post('/Users/store', [UserController::class, 'store']);
+        Route::get('/Users/edit/{id}', [UserController::class, 'edit']);
+        Route::put('/Users/update/{id}', [UserController::class, 'update']);
+        Route::delete('/Users/destroy/{id}', [UserController::class, 'destroy']);
+        Route::get('/Users/data', [UserController::class, 'json']);
     });
 });
 

@@ -76,7 +76,7 @@ Instruksi untuk menginstal dan menjalankan proyek:
 - ✅ CRUD Articles
 - ❌ CRUD Galery (belum dikerjakan)
 - ✅ CRUD File 
-- ❌ CRUD User (belum dikerjakan)
+- ✅ CRUD User
 
 NB: Landing Page Login Bawaan Laravel
 Not Register

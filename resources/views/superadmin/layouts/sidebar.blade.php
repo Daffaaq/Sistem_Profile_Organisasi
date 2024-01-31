@@ -85,8 +85,8 @@
                 Addons
             </div>
 
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item @active('superadmin/Users')">
+                <a class="nav-link" href="{{ url('/superadmin/Users') }}">
                     <i class="fas fa-fw fa-check"></i>
                     <span>Users</span></a>
             </li>
