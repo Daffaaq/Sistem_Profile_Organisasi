@@ -15,6 +15,7 @@ class article extends Model
         'Descriptions',
         'created_date',
         'created_time',
+        'image_path_article',
         'category_articles_id',
     ];
 

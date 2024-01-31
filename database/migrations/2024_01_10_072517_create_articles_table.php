@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('Descriptions');
             $table->date('created_date');
             $table->time('created_time');
+            $table->string('image_path_article');
             $table->unsignedBigInteger('category_articles_id');
             $table->timestamps();
 

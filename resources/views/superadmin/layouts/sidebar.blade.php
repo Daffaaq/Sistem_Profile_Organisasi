@@ -53,10 +53,12 @@
                     </div>
                 </div>
             </li>
-            <li class="nav-item">
+
+            <li class="nav-item @active('superadmin/Article')">
                 <a class="nav-link" href="{{ url('/superadmin/Article') }}">
                     <i class="fas fa-fw fa-exclamation-triangle"></i>
-                    <span>Article</span></a>
+                    <span>Article</span>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">
@@ -69,7 +71,7 @@
                     <span>Aspiration</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item @active('superadmin/File')">
                 <a class="nav-link" href="{{ url('/superadmin/File') }}">
                     <i class="fas fa-fw fa-check"></i>
                     <span>Files</span></a>

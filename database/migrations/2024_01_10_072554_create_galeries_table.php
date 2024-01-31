@@ -18,6 +18,7 @@ return new class extends Migration
             $table->String('title');
             $table->date('created_date');
             $table->time('created_time');
+            $table->string('image_path_galeries');
             $table->unsignedBigInteger('category_galeries_id');
             $table->timestamps();
 

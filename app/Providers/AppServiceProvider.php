@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        // Mendefinisikan directive Blade kustom bernama 'active'
+        Blade::directive('active', function ($path) {
+            // Mengembalikan string PHP yang akan dievaluasi oleh Blade
+            return "{{ request()->is($path) ? 'active' : '' }}";
+        });
     }
 }
