@@ -25,10 +25,8 @@
                             <th>No</th>
                             <th>Category Article</th>
                             <th>Title Article</th>
-                            <th>Description Article</th>
                             <th>Date Created Article</th>
                             <th>Time Created Article</th>
-                            <th>Image Article</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -89,27 +87,12 @@
                         name: 'title'
                     },
                     {
-                        data: 'Descriptions',
-                        name: 'Descriptions',
-                        render: function(data, type, full, meta) {
-                            return '<div class="description-cell">' + data + '</div>';
-                        }
-                    },
-                    {
                         data: 'created_date',
                         name: 'created_date'
                     },
                     {
                         data: 'created_time',
                         name: 'created_time'
-                    },
-                    {
-                        data: 'image_path_article',
-                        name: 'image_path_article',
-                        render: function(data, type, full, meta) {
-                            return '<img src="{{ asset('storage/') }}/' + data +
-                                '" class="img-thumbnail" style="max-width: 100px;">';
-                        }
                     },
                     {
                         data: 'action',

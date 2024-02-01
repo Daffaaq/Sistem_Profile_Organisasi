@@ -44,7 +44,8 @@
                         <h6 class="collapse-header">Custom Main:</h6>
                         <a class="collapse-item {{ request()->is('superadmin/Profile') ? 'active' : '' }}"
                             href="{{ url('/superadmin/Profile') }}">organizational Profile</a>
-                        <a class="collapse-item" href="#">organizational structure</a>
+                        <a class="collapse-item {{ request()->is('superadmin/SO') ? 'active' : '' }}"
+                            href="{{ url('/superadmin/SO') }}">organizational structure</a>
                     </div>
                 </div>
             </li>

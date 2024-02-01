@@ -12,6 +12,7 @@ use App\Http\Controllers\FileController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SOController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,6 +36,16 @@ Auth::routes();
 Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->group(function () {
 
     Route::get('/', [DashboardSuperadminController::class, 'index'])->name('superadmin.dashboard');
+
+    Route::prefix('/')->group(function () {
+        Route::get('/SO', [SOController::class, 'index']);
+        Route::get('/SO/create', [SOController::class, 'create']);
+        Route::post('/SO/store', [SOController::class, 'store']);
+        Route::get('/SO/edit/{id}', [SOController::class, 'edit']);
+        Route::put('/SO/update/{id}', [SOController::class, 'update']);
+        Route::delete('/SO/destroy/{id}', [SOController::class, 'destroy']);
+        Route::get('/SO/data', [SOController::class, 'json']);
+    });
 
     Route::prefix('/')->group(function () {
         Route::get('/Profile', [ProfileController::class, 'index']);

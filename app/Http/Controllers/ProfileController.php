@@ -53,8 +53,15 @@ class ProfileController extends Controller
      */
     public function create()
     {
-
-        return view('superadmin.Profiles.create');
+        $profile = Profile::all();
+        if ($profile->IsEmpty()) {
+            return view('superadmin.Profiles.create');
+        } else{
+            return redirect('/superadmin/Profile')
+            ->with('error', 'Maaf, Anda tidak dapat menambahkan profil perusahaan/organisasi saat ini karena hanya diperbolehkan 1
+                data saja.');
+        }
+        
     }
 
 
