@@ -23,10 +23,13 @@
             {{-- <a href="{{ url('/superadmin/Profile/create') }}" class="btn btn-success float-right mb-3">
                 <i class="fas fa-plus"></i> Create Profiles
             </a> --}}
-            <a href="{{ $disableCreateButton ? '#' : url('/superadmin/Profile/create') }}"
+            {{-- <a href="{{ $disableCreateButton ? '#' : url('/superadmin/Profile/create') }}"
                 class="btn {{ $disableCreateButton ? 'btn-secondary float-right mb-3 disabled' : 'btn-success float-right mb-3' }}">Tambah
+            </a> --}}
+            <a href="{{ url('/superadmin/Profile/create') }}" class="btn btn-success float-right mb-3">
+                <i class="fas fa-plus"></i> Create Profiles
             </a>
-
+            </a>
             <div class="table-responsive">
                 <table class="table table-bordered" id="profileTable" width="100%" cellspacing="0">
                     <thead>
@@ -61,6 +64,7 @@
             </div>
         </div>
     </div>
+    @include('superadmin.Profiles.modal_error')
     <script>
         $(document).ready(function() {
             $('#profileTable').DataTable({
@@ -90,6 +94,18 @@
                 ]
             });
 
+            $('a.btn.btn-success.float-right.mb-3').click(function(event) {
+                // Ambil jumlah data profil dari tabel
+                var profileCount = $('#profileTable').DataTable().rows().count();
+
+                // Jika jumlah data profil lebih dari 0, tampilkan modal error
+                if (profileCount > 0) {
+                    event.preventDefault();
+                    $('#addProfileModal').modal('show');
+                }
+            });
+
+
             $('#profileTable').on('click', 'a.delete-Profile', function(e) {
                 e.preventDefault();
                 var deleteUrl = $(this).data('url');
@@ -117,6 +133,7 @@
                         });
                 }
             });
+
             $('#profileTable').on('click', 'a.view-profiles', function(e) {
                 e.preventDefault();
                 var data = $('#profileTable').DataTable().row($(this).closest('tr')).data();

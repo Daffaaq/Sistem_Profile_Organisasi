@@ -27,10 +27,9 @@ class ProfileController extends Controller
                 $editUrl = url('/superadmin/Profile/edit/' . $row->id);
                 $deleteUrl = url('/superadmin/Profile/destroy/' . $row->id);
 
-            return '<a href="' . $editUrl . '" class="btn btn-primary btn-sm">Edit</a> | ' .
-                '<a href="#" class="delete-Profile btn btn-danger btn-sm" data-url="' . $deleteUrl . '">Delete</a> | ' .
-                '<a href="#" class="btn btn-primary btn-sm view-profiles" data-id="' . $row->id . '">View</a>';
-
+                return '<a href="' . $editUrl . '" class="btn btn-primary btn-sm">Edit</a> | ' .
+                    '<a href="#" class="delete-Profile btn btn-danger btn-sm" data-url="' . $deleteUrl . '">Delete</a> | ' .
+                    '<a href="#" class="btn btn-primary btn-sm view-profiles" data-id="' . $row->id . '">View</a>';
             })
             ->toJson();
     }
@@ -39,11 +38,13 @@ class ProfileController extends Controller
     {
         $profileCount = Profile::count(); // Mendapatkan jumlah data profil
 
-        // Jika jumlah data profil lebih dari 0, kirimkan informasi ke view untuk menonaktifkan tombol "Tambah"
+        // Jika jumlah data profil lebih dari 0, tombol "Tambah" tidak perlu dinonaktifkan
         $disableCreateButton = $profileCount > 0;
 
+        // Tampilkan view dengan memberikan informasi apakah tombol "Tambah" harus dinonaktifkan
         return view('superadmin.Profiles.index', compact('disableCreateButton'));
     }
+
 
     /**
      * Show the form for creating a new resource.
