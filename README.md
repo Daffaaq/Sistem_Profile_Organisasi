@@ -78,7 +78,7 @@ Instruksi untuk menginstal dan menjalankan proyek:
 - ✅ CRUD File 
 - ✅ CRUD User
 - ✅ CRUD Profile
-- ❌ CRUD SO (belum dikerjakan)
+- ✅ CRUD SO
 
 
 NB: Landing Page Login Bawaan Laravel
