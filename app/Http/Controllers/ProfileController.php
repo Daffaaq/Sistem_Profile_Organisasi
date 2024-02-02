@@ -162,6 +162,7 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         $profile = Profile::findOrFail($id);
+        Storage::disk('public')->delete($profile->logo_profiles);
         $profile->delete();
 
         return response()->json(['success' => true, 'message' => 'Profile deleted successfully.']);
