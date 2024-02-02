@@ -102,7 +102,7 @@ https://startbootstrap.com/theme/sb-admin-2
 
 Bila Anda memerlukan profesional support atau ingin mengadakan kerjasama dengan saya, dapat menghubungi saya melalui:
 
-* [LinkedIn](https://www.linkedin.com/in/daffaaqilar/)
+* [Daffa Aqila Rahmatullah](https://www.linkedin.com/in/daffaaqilar/)
 
 ## Pembuat
 
