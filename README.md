@@ -77,7 +77,7 @@ Instruksi untuk menginstal dan menjalankan proyek:
 -   ✅ Manajemen Category Aspiration
 -   ✅ Manajemen Category File
 -   ✅ Manajemen Articles
--   ❌ Manajemen Galery (belum dikerjakan)
+-   ✅ Manajemen Galery
 -   ❌ Aspiration (belum dikerjakan)
 -   ✅ Manajemen File
 -   ✅ Manajemen User
