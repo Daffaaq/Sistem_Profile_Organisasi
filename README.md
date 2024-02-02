@@ -1,7 +1,7 @@
-# Sekilas Tentang Sistem ini 
+# Sekilas Tentang Sistem ini
 
 Sistem yang menunjang Admin Organisasi dan Perusahaan untuk manajemen Article, galeri, File, dan Aspiration.
-Cocok untuk Mahasiswa yang mau belajar CRUD Laravel 
+Cocok untuk Mahasiswa yang mau belajar CRUD Laravel
 
 ## Instalasi
 
@@ -49,11 +49,12 @@ Instruksi untuk menginstal dan menjalankan proyek:
     ```bash
     php artisan migrate
     ```
+
     ATAU
+
     ```bash
     php artisan migrate:fresh --seed
     ```
-    
 
 9. Jalankan server pengembangan Laravel:
 
@@ -67,35 +68,41 @@ Instruksi untuk menginstal dan menjalankan proyek:
 
 ### Fitur
 
-- ✅ Login 2 Role Superadmin dan Admin
+-   ✅ Login 2 Role Superadmin dan Admin
+
 #### Superadmin
-- ✅ CRUD Category Articles
-- ✅ CRUD Category Galery
-- ✅ CRUD Category Aspiration
-- ✅ CRUD Category File
-- ✅ CRUD Articles
-- ❌ CRUD Galery (belum dikerjakan)
-- ❌ Aspiration (belum dikerjakan)
-- ✅ CRUD File 
-- ✅ CRUD User
-- ✅ CRUD Profile
-- ✅ CRUD SO
+
+-   ✅ CRUD Category Articles
+-   ✅ CRUD Category Galery
+-   ✅ CRUD Category Aspiration
+-   ✅ CRUD Category File
+-   ✅ CRUD Articles
+-   ❌ CRUD Galery (belum dikerjakan)
+-   ❌ Aspiration (belum dikerjakan)
+-   ✅ CRUD File
+-   ✅ CRUD User
+-   ✅ CRUD Profile
+-   ✅ CRUD SO
 
 #### Admin
-- ✅ CRUD Category Aspiration
-- ✅ CRUD Category File
-- ❌ Aspiration (belum dikerjakan)
-- ❌ CRUD File (belum dikerjakan)
+
+-   ✅ CRUD Category Aspiration
+-   ✅ CRUD Category File
+-   ❌ Aspiration (belum dikerjakan)
+-   ❌ CRUD File (belum dikerjakan)
 
 NB: Landing Page Login Bawaan Laravel
 Not Register
-
-
 
 ## Admin Template
 
 https://startbootstrap.com/theme/sb-admin-2
 
+## Profesional Support
+
+Bila Anda memerlukan profesional support atau ingin mengadakan kerjasama dengan saya, dapat menghubungi saya melalui:
+
+* [LinkedIn](https://www.linkedin.com/in/daffaaqilar/)
 
 ## Pembuat
 
@@ -107,9 +114,6 @@ Repository ini berisi contoh kode CRUD sederhana dengan Laravel. Repository ini 
 
 **BISA KARENA TERPAKSA LEBIH BAIK DARI PADA TIDAK SAMA SEKALI**
 
-
 **SALAM HANGAT**
 |--------|
 |**ACHE**|
-
-
