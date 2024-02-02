@@ -13,6 +13,7 @@ class galery extends Model
         'title',
         'created_date',
         'created_time',
+        'image_path_galeries',
         'category_galeries_id',
     ];
 

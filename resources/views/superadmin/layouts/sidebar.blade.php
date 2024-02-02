@@ -77,8 +77,8 @@
                     <span>Article</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item @active('superadmin/Galery')">
+                <a class="nav-link" href="{{ url('/superadmin/Galery') }}">
                     <i class="fas fa-fw fa-camera"></i>
                     <span>Galery</span></a>
             </li>

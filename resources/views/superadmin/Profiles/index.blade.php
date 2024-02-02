@@ -46,18 +46,18 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="articleModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel"
+    <div class="modal fade" id="profilesModal" tabindex="-1" role="dialog" aria-labelledby="articleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="articleModalLabel">Article Details</h5>
+                    <h5 class="modal-title" id="profilesModalLabel">Profiles Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div id="articleDetails">
+                    <div id="profilesDetails">
                         <!-- Artikel detail akan dimuat di sini -->
                     </div>
                 </div>
@@ -146,7 +146,7 @@
                 var profilesImage = '{{ asset('storage/') }}/' + data.logo_profiles;
 
                 var modalContent = '<div class="modal-header">' +
-                    '<h5 class="modal-title" id="articleModalLabel">' + profilesname + '</h5>' +
+                    '<h5 class="modal-title" id="profilesModalLabel">' + profilesname + '</h5>' +
                     '</div>' +
                     '<div class="modal-body">' +
                     '<p><strong>Address:</strong> ' + profilesaddres + '</p>' +
@@ -157,8 +157,8 @@
                     '<img src="' + profilesImage + '" class="img-fluid" alt="Profile Image">' +
                     '</div>';
 
-                $('#articleDetails').html(modalContent);
-                $('#articleModal').modal('show');
+                $('#profilesDetails').html(modalContent);
+                $('#profilesModal').modal('show');
 
             });
         });

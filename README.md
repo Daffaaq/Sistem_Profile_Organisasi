@@ -68,18 +68,24 @@ Instruksi untuk menginstal dan menjalankan proyek:
 ### Fitur
 
 - ✅ Login 2 Role Superadmin dan Admin
+#### Superadmin
 - ✅ CRUD Category Articles
 - ✅ CRUD Category Galery
 - ✅ CRUD Category Aspiration
 - ✅ CRUD Category File
-
 - ✅ CRUD Articles
 - ❌ CRUD Galery (belum dikerjakan)
+- ❌ Aspiration (belum dikerjakan)
 - ✅ CRUD File 
 - ✅ CRUD User
 - ✅ CRUD Profile
 - ✅ CRUD SO
 
+#### Admin
+- ✅ CRUD Category Aspiration
+- ✅ CRUD Category File
+- ❌ Aspiration (belum dikerjakan)
+- ❌ CRUD File (belum dikerjakan)
 
 NB: Landing Page Login Bawaan Laravel
 Not Register

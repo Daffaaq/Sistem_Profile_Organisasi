@@ -13,6 +13,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SOController;
+use App\Http\Controllers\GaleryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,15 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
     Route::get('/', [DashboardSuperadminController::class, 'index'])->name('superadmin.dashboard');
 
     Route::prefix('/')->group(function () {
+        Route::get('/Galery', [GaleryController::class, 'index']);
+        Route::get('/Galery/create', [GaleryController::class, 'create']);
+        Route::post('/Galery/store', [GaleryController::class, 'store']);
+        Route::get('/Galery/edit/{id}', [GaleryController::class, 'edit']);
+        Route::put('/Galery/update/{id}', [GaleryController::class, 'update']);
+        Route::delete('/Galery/destroy/{id}', [GaleryController::class, 'destroy']);
+        Route::get('/Galery/data', [GaleryController::class, 'json']);
+    });
+    Route::prefix('/')->group(function () {
         Route::get('/SO', [SOController::class, 'index']);
         Route::get('/SO/create', [SOController::class, 'create']);
         Route::post('/SO/store', [SOController::class, 'store']);
@@ -56,7 +66,7 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::delete('/Profile/destroy/{id}', [ProfileController::class, 'destroy']);
         Route::get('/Profile/data', [ProfileController::class, 'json']);
     });
-    
+
     Route::prefix('/')->group(function () {
         Route::get('/categoryArticle', [CategoryArticleController::class, 'index']);
         Route::get('/categoryArticle/create', [CategoryArticleController::class, 'create']);
