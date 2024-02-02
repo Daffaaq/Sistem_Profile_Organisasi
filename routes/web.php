@@ -145,6 +145,18 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
 Route::middleware(['auth', 'check.role:admin'])->prefix('admin')->group(function () {
     // Route::get('/', [DashboardKasubagController::class, 'ViewKasubag'])->name('kasubag.dashboard');
     Route::get('/', [DashboardAdminController::class, 'index'])->name('admin.dashboard');
+
+    Route::prefix('/')->group(function () {
+        Route::get('/File', [FileController::class, 'index']);
+        Route::get('/File/create', [FileController::class, 'create']);
+        Route::post('/File/store', [FileController::class, 'store']);
+        Route::get('/File/edit/{id}', [FileController::class, 'edit']);
+        Route::put('/File/update/{id}', [FileController::class, 'update']);
+        Route::delete('/File/destroy/{id}', [FileController::class, 'destroy']);
+        Route::get('/File/data', [FileController::class, 'jsonAdmin']);
+        Route::get('/File/data/upload/{id}', [FileController::class, 'serveFile']);
+    });
+
     Route::prefix('/')->group(function () {
         Route::get('/categoryAspiration', [CategoryAspirationController::class, 'index']);
         Route::get('/categoryAspiration/create', [CategoryAspirationController::class, 'create']);

@@ -55,9 +55,9 @@
                     <span>Aspirasi</span></a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item @active('admin/File')">
                 <a class="nav-link" href="{{ url('/admin/File') }}">
-                    <i class="fas fa-fw fa-check"></i>
+                    <i class="fas fa-fw fa-file"></i>
                     <span>Files</span></a>
             </li>
 
