@@ -88,7 +88,7 @@ Instruksi untuk menginstal dan menjalankan proyek:
 
 -   ✅ Manajemen Category Aspiration
 -   ✅ Manajemen Category File
--   ❌ Aspiration (belum dikerjakan)
+-   ✅ Aspiration
 -   ✅ Manajemen File
 
 NB: Landing Page Login Bawaan Laravel

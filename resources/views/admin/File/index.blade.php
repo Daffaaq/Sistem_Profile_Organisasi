@@ -92,7 +92,7 @@
                         })
                         .then(response => response.json())
                         .then(data => {
-                            $('#categoryGaleryTable').DataTable().ajax.reload();
+                            $('#FileTable').DataTable().ajax.reload();
                             location.reload();
                         })
                         .catch(error => {

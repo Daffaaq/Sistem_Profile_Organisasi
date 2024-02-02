@@ -49,8 +49,8 @@
                 </div>
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="#">
+            <li class="nav-item @active('admin/Aspiration')">
+                <a class="nav-link" href="{{ url('/admin/Aspiration') }}">
                     <i class="fas fa-fw fa-exclamation-triangle"></i>
                     <span>Aspirasi</span></a>
             </li>

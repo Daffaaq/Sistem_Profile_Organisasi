@@ -15,6 +15,7 @@ class aspiration extends Model
         'description_aspirations',
         'created_date',
         'created_time',
+        'status',
         'category_aspirations_id',
     ];
 
