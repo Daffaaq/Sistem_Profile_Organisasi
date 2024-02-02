@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('description_aspirations');
             $table->date('created_date');
             $table->time('created_time');
+            $table->enum('status', ['pending', 'in progress', 'resolved'])->nullable()->default(null);
             $table->unsignedBigInteger('category_aspirations_id');
             $table->timestamps();
 
