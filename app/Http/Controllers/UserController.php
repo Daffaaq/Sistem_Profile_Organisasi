@@ -124,21 +124,38 @@ class UserController extends Controller
         // Jika pengguna yang sedang login sedang mengedit data mereka sendiri,
         // peran akan tetap sama seperti sebelumnya
         if ($user->id === Auth::id()) {
-            $request->merge(['role' => $user->role]);
-            session()->flash('warning', 'You cannot change your own role.');
-        }
+            // Periksa apakah pengguna mengubah email atau password
+            $changedEmail = $request->email !== $user->email;
+            $changedPassword = $request->filled('password');
 
-        // Update data user
-        $user->update([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->filled('password') ? bcrypt($request->password) : $user->password,
-            'role' => $request->role,
-        ]);
+            // Update data user
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->filled('password') ? bcrypt($request->password) : $user->password,
+                'role' => 'superadmin',
+            ]);
+
+            // Jika pengguna mengubah email atau password, logout setelah 5 detik
+            if ($changedEmail || $changedPassword) {
+                return redirect('/superadmin/Users')
+                ->with('info', 'User updated successfully. Logging out in 5 seconds...');
+            }
+        } else {
+            // Update data user
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->filled('password') ? bcrypt($request->password) : $user->password,
+                'role' => $request->role,
+            ]);
+        }
 
         // Redirect dengan pesan sukses
         return redirect('/superadmin/Users')->with('success', 'User updated successfully');
     }
+
+
 
 
 

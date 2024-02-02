@@ -1,5 +1,18 @@
 @extends('superadmin.layouts.index')
 @section('container')
+    @if (session('info'))
+        <div class="alert alert-info">
+            {{ session('info') }}
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+            <script>
+                setTimeout(function() {
+                    document.getElementById('logout-form').submit();
+                }, 5000); // 5000 milliseconds = 5 seconds
+            </script>
+        </div>
+    @endif
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
