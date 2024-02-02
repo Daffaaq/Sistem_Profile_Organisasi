@@ -72,24 +72,24 @@ Instruksi untuk menginstal dan menjalankan proyek:
 
 #### Superadmin
 
--   ✅ CRUD Category Articles
--   ✅ CRUD Category Galery
--   ✅ CRUD Category Aspiration
--   ✅ CRUD Category File
--   ✅ CRUD Articles
--   ❌ CRUD Galery (belum dikerjakan)
+-   ✅ Manajemen Category Articles
+-   ✅ Manajemen Category Galery
+-   ✅ Manajemen Category Aspiration
+-   ✅ Manajemen Category File
+-   ✅ Manajemen Articles
+-   ❌ Manajemen Galery (belum dikerjakan)
 -   ❌ Aspiration (belum dikerjakan)
--   ✅ CRUD File
--   ✅ CRUD User
--   ✅ CRUD Profile
--   ✅ CRUD SO
+-   ✅ Manajemen File
+-   ✅ Manajemen User
+-   ✅ Manajemen Profile
+-   ✅ Manajemen SO
 
 #### Admin
 
--   ✅ CRUD Category Aspiration
--   ✅ CRUD Category File
+-   ✅ Manajemen Category Aspiration
+-   ✅ Manajemen Category File
 -   ❌ Aspiration (belum dikerjakan)
--   ❌ CRUD File (belum dikerjakan)
+-   ❌ Manajemen File (belum dikerjakan)
 
 NB: Landing Page Login Bawaan Laravel
 Not Register
