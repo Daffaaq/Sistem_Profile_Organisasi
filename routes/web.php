@@ -139,6 +139,16 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::delete('/Users/destroy/{id}', [UserController::class, 'destroy']);
         Route::get('/Users/data', [UserController::class, 'json']);
     });
+    Route::prefix('/')->group(function () {
+        Route::get('/Aspiration', [AspirationController::class, 'index']);
+        Route::get('/Aspiration/create', [AspirationController::class, 'create']);
+        Route::post('/Aspiration/store', [AspirationController::class, 'store']);
+        Route::get('/Aspiration/edit/{id}', [AspirationController::class, 'edit']);
+        Route::put('/Aspiration/update/{id}', [AspirationController::class, 'update']);
+        Route::delete('/Aspiration/destroy/{id}', [AspirationController::class, 'destroy']);
+        Route::get('/Aspiration/data', [AspirationController::class, 'json']);
+        Route::put('/Aspiration/updateStatus/{id}', [AspirationController::class, 'updateStatus']);
+    });
 });
 
 

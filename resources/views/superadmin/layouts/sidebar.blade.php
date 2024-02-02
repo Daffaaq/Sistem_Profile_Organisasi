@@ -82,10 +82,10 @@
                     <i class="fas fa-fw fa-camera"></i>
                     <span>Galery</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-inbox"></i>
-                    <span>Aspiration</span></a>
+            <li class="nav-item @active('superadmin/Aspiration')">
+                <a class="nav-link" href="{{ url('/superadmin/Aspiration') }}">
+                    <i class="fas fa-fw fa-exclamation-triangle"></i>
+                    <span>Aspirasi</span></a>
             </li>
 
             <li class="nav-item @active('superadmin/File')">

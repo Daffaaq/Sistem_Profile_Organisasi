@@ -27,20 +27,26 @@ class AspirationController extends Controller
             ->addColumn('DT_RowIndex', function ($aspirations) use (&$index) {
                 return $index++;
             })
-            ->addColumn('action', function ($aspirations) {
+            ->addColumn('update_status', function ($aspirations) {
+                $updateStatusUrl = url('/superadmin/Aspiration/updateStatus/' . $aspirations->id);
+                $updateStatusButton = '<a href="#" class="btn btn-info update-status" data-id="' . $aspirations->id . '">Update Status</a>';
+                return $updateStatusButton;
+            })
+            ->addColumn('edit_delete', function ($aspirations) {
                 $editUrl = url('/superadmin/Aspiration/edit/' . $aspirations->id);
                 $deleteUrl = url('/superadmin/Aspiration/destroy/' . $aspirations->id);
-
-                return '<a href="' . $editUrl . '" class="edit-file">Edit</a> | <a href="#" class="delete-file" data-url="' . $deleteUrl . '">Delete</a>';
+                $editButton = '<a href="' . $editUrl . '" class="btn btn-primary edit-file">Edit</a>';
+                $deleteButton = '<a href="#" class="btn btn-danger delete-file" data-url="' . $deleteUrl . '">Delete</a>';
+                return $editButton . ' | ' . $deleteButton;
             })
-            ->rawColumns(['action'])
+            ->rawColumns(['update_status', 'edit_delete'])
             ->toJson();
     }
     public function jsonAdmin()
     {
         $aspirations = Aspiration::leftJoin('category_aspirations', 'aspirations.category_aspirations_id', '=', 'category_aspirations.id')
-        ->select('aspirations.*', 'category_aspirations.name_category_aspirations as category_name')
-        ->get();
+            ->select('aspirations.*', 'category_aspirations.name_category_aspirations as category_name')
+            ->get();
 
         $index = 1;
         return DataTables::of($aspirations)
