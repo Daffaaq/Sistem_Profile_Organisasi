@@ -89,10 +89,10 @@
 
     <script>
         document.getElementById('status').addEventListener('change', function() {
-        var form = document.getElementById('filterForm');
-        var selectedStatus = document.getElementById('status').value;
-        form.action = "{{ url('/superadmin/Aspiration/print_pdf') }}/" + selectedStatus;
-    });
+            var form = document.getElementById('filterForm');
+            var selectedStatus = document.getElementById('status').value;
+            form.action = "{{ url('/superadmin/Aspiration/print_pdf') }}/" + selectedStatus;
+        });
         $(document).ready(function() {
             $('#AspirationTable').DataTable({
                 processing: true,
