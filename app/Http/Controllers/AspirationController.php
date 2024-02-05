@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\aspiration;
 use App\Models\category_aspiration;
+use App\Models\Profile;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AspirationController extends Controller
 {
@@ -249,5 +251,25 @@ class AspirationController extends Controller
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to update aspiration status'], 500);
         }
+    }
+
+    public function pdfPrint()
+    {
+        $aspirations = Aspiration::paginate(5); // Adjust the number as per your requirement
+        $categories = category_aspiration::all();
+        $profile = Profile::first();
+
+        // Check if profile data is empty
+        if (!$profile) {
+            return redirect('/superadmin/Profile')->with('error', 'Profile data is empty. Please fill in the profile details first.');
+        }
+
+        $pdf = Pdf::loadView('superadmin.Aspiration.printPDF', [
+            'aspirations' => $aspirations,
+            'categories' => $categories,
+            'profile' => $profile
+        ]);
+
+        return $pdf->stream();
     }
 }

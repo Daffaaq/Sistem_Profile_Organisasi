@@ -148,6 +148,7 @@ Route::middleware(['auth', 'check.role:superadmin'])->prefix('superadmin')->grou
         Route::delete('/Aspiration/destroy/{id}', [AspirationController::class, 'destroy']);
         Route::get('/Aspiration/data', [AspirationController::class, 'json']);
         Route::put('/Aspiration/updateStatus/{id}', [AspirationController::class, 'updateStatus']);
+        Route::get('/Aspiration/print_pdf', [AspirationController::class, 'pdfPrint']);
     });
 });
 

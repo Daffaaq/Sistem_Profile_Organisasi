@@ -18,6 +18,10 @@
             <a href="{{ url('/superadmin/Aspiration/create') }}" class="btn btn-success float-right mb-3">
                 <i class="fas fa-plus"></i> Aspiration
             </a>
+            <a href="{{ url('/superadmin/Aspiration/print_pdf') }}" class="btn btn-info float-right mb-3" target="_blank">
+                <i class="fas fa-print"></i> Print PDF
+            </a>
+
             <div class="table-responsive">
                 <table class="table table-bordered" id="AspirationTable" width="100%" cellspacing="0">
                     <thead>
