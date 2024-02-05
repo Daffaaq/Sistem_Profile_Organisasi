@@ -69,6 +69,7 @@ Instruksi untuk menginstal dan menjalankan proyek:
 ### Fitur
 
 -   ✅ Login 2 Role Superadmin dan Admin
+-   ✅ Register 2 role diarahakan ke login
 
 #### Superadmin
 
@@ -92,7 +93,6 @@ Instruksi untuk menginstal dan menjalankan proyek:
 -   ✅ Manajemen File
 
 NB: Landing Page Login Bawaan Laravel
-Not Register
 
 ## Admin Template
 
