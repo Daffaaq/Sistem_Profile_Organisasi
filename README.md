@@ -79,7 +79,7 @@ Instruksi untuk menginstal dan menjalankan proyek:
 -   ✅ Manajemen Category File
 -   ✅ Manajemen Articles
 -   ✅ Manajemen Galery
--   ✅ Aspiration
+-   ✅ Aspiration (Export PDF)
 -   ✅ Manajemen File
 -   ✅ Manajemen User
 -   ✅ Manajemen Profile
