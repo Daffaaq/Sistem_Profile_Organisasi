@@ -49,7 +49,7 @@
             <tr>
                 <th>Judul Aspirasi</th>
                 <th>Deskripsi Aspirasi</th>
-                <th>Kategoru Aspirasi</th>
+                <th>Kategori Aspirasi</th>
                 <th>Tanggal Aspirasi</th>
                 <th>Waktu Aspirasi</th>
                 <th>Status Aspirasi</th>

@@ -18,7 +18,7 @@
             <a href="{{ url('/superadmin/Aspiration/create') }}" class="btn btn-success float-right mb-3">
                 <i class="fas fa-plus"></i> Aspiration
             </a>
-            <form id="filterForm" action="{{ url('/superadmin/Aspiration/print_pdf') }}" method="GET">
+            <form id="filterForm" action="{{ url('/superadmin/Aspiration/print_pdf') }}" method="GET" target="_blank">
                 <select name="status" id="status" class="form-control">
                     <option value="all" {{ $selectedStatus === 'all' ? 'selected' : '' }}>All Status</option>
                     <option value="Todo" {{ $selectedStatus === 'Todo' ? 'selected' : '' }}>Todo</option>
