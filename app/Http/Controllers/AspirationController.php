@@ -73,10 +73,13 @@ class AspirationController extends Controller
 
 
 
-    public function index()
+    public function index(Request $request)
     {
         $userRole = auth()->user()->role; // Mendapatkan peran pengguna
         $categories = category_aspiration::all();
+
+        // Menambahkan filter status aspirasi
+        $selectedStatus = $request->input('status', 'all'); // Mendapatkan nilai status yang dipilih dari request
 
         if ($categories->isEmpty()) {
             if ($userRole == 'superadmin') {
@@ -87,14 +90,15 @@ class AspirationController extends Controller
         }
 
         if ($userRole == 'superadmin') {
-            return view('superadmin.Aspiration.index');
+            return view('superadmin.Aspiration.index', compact('selectedStatus')); // Mengirimkan variabel $selectedStatus ke view
         } elseif ($userRole == 'admin') {
             // Tambahkan logika atau tampilan yang sesuai untuk admin
-            return view('admin.Aspiration.index');
+            return view('admin.Aspiration.index', compact('selectedStatus')); // Mengirimkan variabel $selectedStatus ke view
         }
 
         return redirect('/login')->with('error', 'Unauthorized access. Please log in with the correct account.');
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -253,9 +257,16 @@ class AspirationController extends Controller
         }
     }
 
-    public function pdfPrint()
+    public function pdfPrint($status)
     {
-        $aspirations = Aspiration::paginate(5); // Adjust the number as per your requirement
+        $aspirations = Aspiration::query();
+
+        // Filter data berdasarkan status yang dipilih
+        if ($status !== 'all') {
+            $aspirations->where('status', $status);
+        }
+
+        $aspirations = $aspirations->get();
         $categories = category_aspiration::all();
         $profile = Profile::first();
 

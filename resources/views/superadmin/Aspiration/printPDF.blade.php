@@ -29,29 +29,30 @@
         }
 
         table th {
-            background-color: #f2f2f2;
+            background-color: #afafaf;
         }
     </style>
 </head>
 
 <body>
-    <div class="header">
+    <div class="header" style="text-align: center; display: flex; flex-direction: column; align-items: center;">
         <h1>{{ $profile->name_profiles }}</h1>
         <p>{{ $profile->address_profiles }}</p>
         <p>{{ $profile->phone_profiles }}</p>
         {{-- <img src="{{ asset($profile->logo_profiles) }}" alt="Logo"> --}}
     </div>
 
-    <h2>List of Aspirations</h2>
+
+    <h2>Daftar Aspirasi</h2>
     <table>
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>Created Date</th>
-                <th>Created Time</th>
-                <th>Status</th>
+                <th>Judul Aspirasi</th>
+                <th>Deskripsi Aspirasi</th>
+                <th>Kategoru Aspirasi</th>
+                <th>Tanggal Aspirasi</th>
+                <th>Waktu Aspirasi</th>
+                <th>Status Aspirasi</th>
             </tr>
         </thead>
         <tbody>

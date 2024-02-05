@@ -18,9 +18,17 @@
             <a href="{{ url('/superadmin/Aspiration/create') }}" class="btn btn-success float-right mb-3">
                 <i class="fas fa-plus"></i> Aspiration
             </a>
-            <a href="{{ url('/superadmin/Aspiration/print_pdf') }}" class="btn btn-info float-right mb-3" target="_blank">
-                <i class="fas fa-print"></i> Print PDF
-            </a>
+            <form id="filterForm" action="{{ url('/superadmin/Aspiration/print_pdf') }}" method="GET">
+                <select name="status" id="status" class="form-control">
+                    <option value="all" {{ $selectedStatus === 'all' ? 'selected' : '' }}>All Status</option>
+                    <option value="Todo" {{ $selectedStatus === 'Todo' ? 'selected' : '' }}>Todo</option>
+                    <option value="In progress" {{ $selectedStatus === 'In progress' ? 'selected' : '' }}>In progress
+                    </option>
+                    <option value="Done" {{ $selectedStatus === 'Done' ? 'selected' : '' }}>Done</option>
+                </select>
+                <button type="submit" class="btn btn-primary">Filter</button>
+            </form>
+
 
             <div class="table-responsive">
                 <table class="table table-bordered" id="AspirationTable" width="100%" cellspacing="0">
@@ -80,6 +88,11 @@
     </div>
 
     <script>
+        document.getElementById('status').addEventListener('change', function() {
+        var form = document.getElementById('filterForm');
+        var selectedStatus = document.getElementById('status').value;
+        form.action = "{{ url('/superadmin/Aspiration/print_pdf') }}/" + selectedStatus;
+    });
         $(document).ready(function() {
             $('#AspirationTable').DataTable({
                 processing: true,
