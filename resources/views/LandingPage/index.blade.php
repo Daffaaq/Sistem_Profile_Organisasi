@@ -112,51 +112,20 @@
 
     {{-- galeries --}}
     <section class="projects-section bg-light" id="galeri">
-        <div class="container px-4 px-lg-5">
-            <!-- Featured Project Row-->
-            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg"
-                        alt="..." /></div>
-                <div class="col-xl-4 col-lg-5">
-                    <div class="featured-text text-center text-lg-left">
-                        <h4>Shoreline</h4>
-                        <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use
-                            it for any project - even commercial projects! Download it, customize it, and publish your
-                            website!</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Project One Row-->
-            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="..." />
-                </div>
-                <div class="col-lg-6">
-                    <div class="bg-black text-center h-100 project">
-                        <div class="d-flex h-100">
-                            <div class="project-text w-100 my-auto text-center text-lg-left">
-                                <h4 class="text-white">Misty</h4>
-                                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or
-                                    anything else, along with a description.</p>
-                            </div>
+        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+            <div class="owl-carousel owl-theme">
+                @foreach ($galeries as $galery)
+                    <div class="item">
+                        <img class="img-fluid mb-3 mb-lg-0"
+                            src="{{ asset('storage/' . $galery->image_path_galeries) }}" alt="{{ $galery->title }}"
+                            width="300" height="200" />
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>{{ $galery->title }}</h4>
+                            <p class="text-black-50 mb-0">{{ $galery->categoryGalery->name }}</p>
+                            <!-- You can add more details from the Galery model as needed -->
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- Project Two Row-->
-            <div class="row gx-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="..." />
-                </div>
-                <div class="col-lg-6 order-lg-first">
-                    <div class="bg-black text-center h-100 project">
-                        <div class="d-flex h-100">
-                            <div class="project-text w-100 my-auto text-center text-lg-right">
-                                <h4 class="text-white">Mountains</h4>
-                                <p class="mb-0 text-white-50">Another example of a project with its respective
-                                    description. These sections work well responsively as well!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
@@ -238,12 +207,17 @@
                         <div class="mb-3">
                             <label for="category" class="form-label">Category</label>
                             <select class="form-select" id="category" name="category_aspirations_id" required>
-                                <option value="">Select category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->name_category_aspirations }}
-                                    </option>
-                                @endforeach
+                                @if ($categories->isEmpty())
+                                    <option value="" disabled>No categories available</option>
+                                @else
+                                    <option value="">Select category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category->id }}">
+                                            {{ $category->name_category_aspirations }}</option>
+                                    @endforeach
+                                @endif
                             </select>
+
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -277,7 +251,6 @@
                             <h4 class="text-uppercase m-0">Email</h4>
                             <hr class="my-4 mx-auto" />
                             @foreach ($profile as $p)
-                                <div class="small text-black-50">{{ $p->email_profiles }}</div>
                                 <div class="small text-black-50"><a href="#!">{{ $p->email_profiles }}</a></div>
                             @endforeach
                         </div>
@@ -290,7 +263,9 @@
                             <i class="fas fa-mobile-alt text-primary mb-2"></i>
                             <h4 class="text-uppercase m-0">Phone</h4>
                             <hr class="my-4 mx-auto" />
-                            <div class="small text-black-50">{{ $p->phone_profiles }}</div>
+                            @foreach ($profile as $p)
+                                <div class="small text-black-50">{{ $p->phone_profiles }}</div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -318,48 +293,95 @@
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form');
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Mencegah formulir dari pengiriman default
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); // Mencegah formulir dari pengiriman default
 
-            // Mengirim data formulir menggunakan fetch API
-            fetch('{{ url('/Aspiration') }}', {
-                method: 'POST',
-                body: new FormData(form)
-            })
-            .then(response => response.json()) // Mengubah respon menjadi objek JSON
-            .then(data => {
-                if (data.success) {
-                    // Menampilkan SweetAlert jika aspirasi berhasil dibuat
-                    showSweetAlert('Success', data.success, 'success');
-                    setTimeout(() => {
-                            window.location.href = '{{ url('/')}}';
-                        }, 2000);
-                } else if (data.error) {
-                    // Menampilkan SweetAlert jika terjadi kesalahan saat membuat aspirasi
-                    showSweetAlert('Error', data.error, 'error');
-                } else {
-                    // Menampilkan SweetAlert jika terjadi kesalahan yang tidak diketahui
-                    showSweetAlert('Error', 'Failed to create aspiration. Please try again.', 'error');
+                // Mengirim data formulir menggunakan fetch API
+                fetch('{{ url('/Aspiration') }}', {
+                        method: 'POST',
+                        body: new FormData(form)
+                    })
+                    .then(response => response.json()) // Mengubah respon menjadi objek JSON
+                    .then(data => {
+                        if (data.success) {
+                            // Menampilkan SweetAlert jika aspirasi berhasil dibuat
+                            showSweetAlert('Success', data.success, 'success');
+                            setTimeout(() => {
+                                window.location.href = '{{ url('/') }}';
+                            }, 2000);
+                        } else if (data.error) {
+                            // Menampilkan SweetAlert jika terjadi kesalahan saat membuat aspirasi
+                            showSweetAlert('Error', data.error, 'error');
+                        } else {
+                            // Menampilkan SweetAlert jika terjadi kesalahan yang tidak diketahui
+                            showSweetAlert('Error', 'Failed to create aspiration. Please try again.',
+                                'error');
+                        }
+                    })
+                    .catch(error => {
+                        // Menampilkan SweetAlert jika terjadi kesalahan pada saat mengirim permintaan
+                        showSweetAlert('Error', 'An error occurred. Please try again later.', 'error');
+                    });
+            });
+
+            function showSweetAlert(title, text, icon) {
+                Swal.fire({
+                    title: title,
+                    text: text,
+                    icon: icon,
+                });
+            }
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form');
+            const categorySelect = document.getElementById('category');
+            const submitButton = document.querySelector('button[type="submit"]');
+
+            // Mengatur status awal tombol submit
+            submitButton.disabled = categorySelect.value === '';
+
+            // Memantau perubahan pada pilihan kategori
+            categorySelect.addEventListener('change', function() {
+                submitButton.disabled = categorySelect.value === '';
+            });
+
+            // Menangani submit form
+            form.addEventListener('submit', function(event) {
+                if (submitButton.disabled) {
+                    event.preventDefault(); // Mencegah pengiriman formulir jika tombol submit dinonaktifkan
+                    // Tambahkan pesan atau tindakan lain di sini jika diperlukan
                 }
-            })
-            .catch(error => {
-                // Menampilkan SweetAlert jika terjadi kesalahan pada saat mengirim permintaan
-                showSweetAlert('Error', 'An error occurred. Please try again later.', 'error');
             });
         });
-
-        function showSweetAlert(title, text, icon) {
-            Swal.fire({
-                title: title,
-                text: text,
-                icon: icon,
+    </script>
+    <script>
+        $(document).ready(function() {
+            $(".owl-carousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: false
+                    },
+                    1000: {
+                        items: 5,
+                        nav: true,
+                        loop: false
+                    }
+                }
             });
-        }
-    });
-</script>
-
+        });
+    </script>
 </body>
 
 </html>

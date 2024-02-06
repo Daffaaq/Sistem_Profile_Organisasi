@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Profile;
 use App\Models\Article;
+use App\Models\Galery;
 use App\Models\category_aspiration;
 
 class LandingPageController extends Controller
@@ -18,8 +19,9 @@ class LandingPageController extends Controller
     {
         $profile = Profile::all();
         $article = Article::all();
+        $galeries = Galery::all();
         $categories = category_aspiration::all();
-        return view('LandingPage.index', compact('profile', 'article', 'categories'));
+        return view('LandingPage.index', compact('profile', 'article', 'categories', 'galeries'));
     }
 
     /**

@@ -11201,3 +11201,9 @@ body {
 .footer {
   padding: 5rem 0;
 }
+
+.owl-carousel,
+.owl-theme {
+    display: flex;
+    flex-direction: row;
+}
