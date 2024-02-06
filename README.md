@@ -94,9 +94,11 @@ Instruksi untuk menginstal dan menjalankan proyek:
 
 #### Landing Page
 - ✅ Profile
-- ❌ Galery
-- ❌ Article
-- ❌ Aspiration
+- ✅ Galery belum fix
+- ✅ Article belum fix
+- ✅ Aspiration
+
+
 NB: Login Bawaan Laravel
 
 ## Admin Template
