@@ -8,6 +8,7 @@ use App\Models\category_aspiration;
 use App\Models\Profile;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class AspirationController extends Controller
@@ -148,6 +149,27 @@ class AspirationController extends Controller
             return redirect()->back()->with('error', 'Failed to create aspiration. Please try again.');
         }
     }
+    public function storeLandingPage(Request $request)
+    {
+        $request->validate([
+            'tittle_aspirations' => 'required',
+            'description_aspirations' => 'required',
+            'category_aspirations_id' => 'required|exists:category_aspirations,id',
+        ]);
+
+        $requestData = $request->all();
+        $requestData['created_date'] = now()->toDateString();
+        $requestData['created_time'] = now()->toTimeString();
+
+        $aspiration = Aspiration::create($requestData);
+
+        if ($aspiration) {
+            return response()->json(['success' => 'Aspiration created successfully.']);
+        } else {
+            return response()->json(['error' => 'Failed to create aspiration. Please try again.'], 500);
+        }
+    }
+
 
     /**
      * Display the specified resource.

@@ -68,3 +68,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
+function showFullDescription(index) {
+    var descriptionElement = document.getElementById('articleDescription' + index);
+    var fullDescription = descriptionElement.dataset.fullDescription;
+    descriptionElement.innerHTML = fullDescription;
+}

@@ -33,6 +33,7 @@ use App\Http\Controllers\LandingPageController;
 // });
 Route::group(['prefix' => '/'], function () {
     Route::get('/', [LandingPageController::class, 'index']);
+    Route::post('/Aspiration', [AspirationController::class, 'storeLandingPage']);
 });
 
 Auth::routes();

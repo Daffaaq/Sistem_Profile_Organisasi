@@ -83,51 +83,33 @@
     {{-- articles --}}
     <section class="projects-section bg-light" id="article">
         <div class="container px-4 px-lg-5">
-            <!-- Featured Project Row-->
-            <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                <div class="col-xl-8 col-lg-7"><img class="img-fluid mb-3 mb-lg-0" src="assets/img/bg-masthead.jpg"
-                        alt="..." /></div>
-                <div class="col-xl-4 col-lg-5">
-                    <div class="featured-text text-center text-lg-left">
-                        <h4>Shoreline</h4>
-                        <p class="text-black-50 mb-0">Grayscale is open source and MIT licensed. This means you can use
-                            it for any project - even commercial projects! Download it, customize it, and publish your
-                            website!</p>
+            @foreach ($article as $art)
+                <!-- Featured Project Row-->
+                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
+                    <div class="col-xl-8 col-lg-7">
+                        <img class="img-fluid mb-3 mb-lg-0" src="{{ asset('storage/' . $art->image_path_article) }}"
+                            alt="{{ $art->title }}" width="300" height="200" />
+
                     </div>
-                </div>
-            </div>
-            <!-- Project One Row-->
-            <div class="row gx-0 mb-5 mb-lg-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-01.jpg" alt="..." /></div>
-                <div class="col-lg-6">
-                    <div class="bg-black text-center h-100 project">
-                        <div class="d-flex h-100">
-                            <div class="project-text w-100 my-auto text-center text-lg-left">
-                                <h4 class="text-white">Misty</h4>
-                                <p class="mb-0 text-white-50">An example of where you can put an image of a project, or
-                                    anything else, along with a description.</p>
-                            </div>
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="featured-text text-center text-lg-left">
+                            <h4>{{ $art->title }}</h4>
+                            <p class="text-black-50 mb-0" id="articleDescription{{ $loop->iteration }}">
+                                @if (strlen($art->Descriptions) > 100)
+                                    {{ substr($art->Descriptions, 0, 100) }}... <a href="#"
+                                        onclick="showFullDescription({{ $loop->iteration }})">see more</a>
+                                @else
+                                    {{ $art->Descriptions }}
+                                @endif
+                            </p>
+
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Project Two Row-->
-            <div class="row gx-0 justify-content-center">
-                <div class="col-lg-6"><img class="img-fluid" src="assets/img/demo-image-02.jpg" alt="..." /></div>
-                <div class="col-lg-6 order-lg-first">
-                    <div class="bg-black text-center h-100 project">
-                        <div class="d-flex h-100">
-                            <div class="project-text w-100 my-auto text-center text-lg-right">
-                                <h4 class="text-white">Mountains</h4>
-                                <p class="mb-0 text-white-50">Another example of a project with its respective
-                                    description. These sections work well responsively as well!</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
+
     {{-- galeries --}}
     <section class="projects-section bg-light" id="galeri">
         <div class="container px-4 px-lg-5">
@@ -180,7 +162,7 @@
     </section>
     <!-- Signup-->
     {{-- aspiration --}}
-    <section class="signup-section" id="aspiration">
+    {{-- <section class="signup-section" id="aspiration">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5">
                 <div class="col-md-10 col-lg-8 mx-auto text-center">
@@ -230,7 +212,46 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+    <section class="projects-section bg-light" id="aspiration">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5">
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                <div class="col-md-10 col-lg-8 mx-auto">
+                    <h2 class="text-center mb-5">Create New Aspiration</h2>
+                    <form action="{{ url('/Aspiration') }}" method="POST">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="title" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" name="tittle_aspirations"
+                                placeholder="Enter aspiration title" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description_aspirations" rows="3"
+                                placeholder="Enter aspiration description" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" id="category" name="category_aspirations_id" required>
+                                <option value="">Select category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name_category_aspirations }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </section>
+
     <!-- Contact-->
     <section class="contact-section bg-black">
         <div class="container px-4 px-lg-5">
@@ -289,12 +310,56 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Core theme JS-->
     <script src="{{ asset('landingpage/js/scripts.js') }}"></script>
+    <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
     {{-- <script src="js/scripts.js"></script> --}}
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <!-- * *                               SB Forms JS                               * *-->
     <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
     <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault(); // Mencegah formulir dari pengiriman default
+
+            // Mengirim data formulir menggunakan fetch API
+            fetch('{{ url('/Aspiration') }}', {
+                method: 'POST',
+                body: new FormData(form)
+            })
+            .then(response => response.json()) // Mengubah respon menjadi objek JSON
+            .then(data => {
+                if (data.success) {
+                    // Menampilkan SweetAlert jika aspirasi berhasil dibuat
+                    showSweetAlert('Success', data.success, 'success');
+                    setTimeout(() => {
+                            window.location.href = '{{ url('/')}}';
+                        }, 2000);
+                } else if (data.error) {
+                    // Menampilkan SweetAlert jika terjadi kesalahan saat membuat aspirasi
+                    showSweetAlert('Error', data.error, 'error');
+                } else {
+                    // Menampilkan SweetAlert jika terjadi kesalahan yang tidak diketahui
+                    showSweetAlert('Error', 'Failed to create aspiration. Please try again.', 'error');
+                }
+            })
+            .catch(error => {
+                // Menampilkan SweetAlert jika terjadi kesalahan pada saat mengirim permintaan
+                showSweetAlert('Error', 'An error occurred. Please try again later.', 'error');
+            });
+        });
+
+        function showSweetAlert(title, text, icon) {
+            Swal.fire({
+                title: title,
+                text: text,
+                icon: icon,
+            });
+        }
+    });
+</script>
+
 </body>
 
 </html>

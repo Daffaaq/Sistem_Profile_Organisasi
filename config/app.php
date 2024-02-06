@@ -185,6 +185,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -216,6 +217,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         'Agent' => Jenssegers\Agent\Facades\Agent::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
