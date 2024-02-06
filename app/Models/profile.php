@@ -10,6 +10,7 @@ class profile extends Model
     use HasFactory;
 
     protected $fillable = [
+        'nickname_profiles',
         'name_profiles',
         'address_profiles',
         'phone_profiles',

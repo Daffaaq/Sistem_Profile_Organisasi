@@ -92,11 +92,17 @@ Instruksi untuk menginstal dan menjalankan proyek:
 -   ✅ Aspiration
 -   ✅ Manajemen File
 
-NB: Landing Page Login Bawaan Laravel
+#### Landing Page
+- ✅ Profile
+- ❌ Galery
+- ❌ Article
+- ❌ Aspiration
+NB: Login Bawaan Laravel
 
 ## Admin Template
 
 https://startbootstrap.com/theme/sb-admin-2
+https://startbootstrap.com/theme/grayscale
 
 ## Profesional Support
 

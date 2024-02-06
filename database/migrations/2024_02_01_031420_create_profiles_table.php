@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
+            $table->string('nickname_profiles');
             $table->string('name_profiles');
             $table->string('address_profiles');
             $table->string('phone_profiles');

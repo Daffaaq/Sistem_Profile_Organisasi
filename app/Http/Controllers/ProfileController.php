@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
     public function json()
     {
-        $profiles = Profile::select(['id', 'name_profiles', 'address_profiles', 'phone_profiles', 'email_profiles', 'description_profiles', 'logo_profiles']);
+        $profiles = Profile::select(['id', 'nickname_profiles', 'name_profiles', 'address_profiles', 'phone_profiles', 'email_profiles', 'description_profiles', 'logo_profiles']);
         $index = 1;
         return DataTables::of($profiles)
             ->addColumn('DT_RowIndex', function ($data) use (&$index) {
@@ -56,12 +56,11 @@ class ProfileController extends Controller
         $profile = Profile::all();
         if ($profile->IsEmpty()) {
             return view('superadmin.Profiles.create');
-        } else{
+        } else {
             return redirect('/superadmin/Profile')
-            ->with('error', 'Maaf, Anda tidak dapat menambahkan profil perusahaan/organisasi saat ini karena hanya diperbolehkan 1
+                ->with('error', 'Maaf, Anda tidak dapat menambahkan profil perusahaan/organisasi saat ini karena hanya diperbolehkan 1
                 data saja.');
         }
-        
     }
 
 
@@ -74,6 +73,7 @@ class ProfileController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'nickname_profiles' => 'required',
             'name_profiles' => 'required',
             'address_profiles' => 'required',
             'phone_profiles' => 'required',
@@ -124,6 +124,7 @@ class ProfileController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'nickname_profiles' => 'required',
             'name_profiles' => 'required',
             'address_profiles' => 'required',
             'phone_profiles' => 'required',

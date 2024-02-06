@@ -15,6 +15,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SOController;
 use App\Http\Controllers\GaleryController;
 use App\Http\Controllers\AspirationController;
+use App\Http\Controllers\LandingPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,11 @@ use App\Http\Controllers\AspirationController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+// Route::get('/', function () {
+//     return view('LandingPage.index');
+// });
+Route::group(['prefix' => '/'], function () {
+    Route::get('/', [LandingPageController::class, 'index']);
 });
 
 Auth::routes();

@@ -23,6 +23,11 @@
                             @method('PUT')
                             <!-- Name -->
                             <div class="form-group">
+                                <label for="nickname_profiles">Nickname:</label>
+                                <input type="text" name="nickname_profiles" id="nickname_profiles" class="form-control"
+                                    value="{{ $profile->nickname_profiles }}" required>
+                            </div>
+                            <div class="form-group">
                                 <label for="name_profiles">Name:</label>
                                 <input type="text" name="name_profiles" id="name_profiles" class="form-control"
                                     value="{{ $profile->name_profiles }}" required>

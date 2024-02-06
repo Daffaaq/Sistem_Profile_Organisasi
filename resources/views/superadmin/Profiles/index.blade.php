@@ -35,6 +35,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Kode Nama</th>
                             <th>Nama</th>
                             <th>Alamat</th>
                             <th>Action</th>
@@ -76,6 +77,10 @@
                         name: 'DT_RowIndex',
                         orderable: false,
                         searchable: false
+                    },
+                    {
+                        data: 'nickname_profiles',
+                        name: 'nickname_profiles'
                     },
                     {
                         data: 'name_profiles',
