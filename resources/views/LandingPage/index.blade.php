@@ -84,105 +84,110 @@
     <section class="projects-section bg-light" id="article">
         <div class="container px-4 px-lg-5">
             @foreach ($article as $art)
-                <!-- Featured Project Row-->
-                <div class="row gx-0 mb-4 mb-lg-5 align-items-center">
-                    <div class="col-xl-8 col-lg-7">
-                        <img class="img-fluid mb-3 mb-lg-0" src="{{ asset('storage/' . $art->image_path_article) }}"
-                            alt="{{ $art->title }}" width="300" height="200" />
-
+                <div class="card" style="width: 18rem;">
+                    <img src="{{ asset('storage/' . $art->image_path_article) }}" class="card-img-top"
+                        alt="{{ $art->title }}" width="300" height="200" />
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $art->title }}</h5>
+                        <p class="card-text">
+                            @if (strlen($art->Descriptions) > 100)
+                                {{ substr($art->Descriptions, 0, 100) }}... <a href="#"
+                                    onclick="showFullDescription({{ $loop->iteration }})">see more</a>
+                            @else
+                                {{ $art->Descriptions }}
+                            @endif
+                        </p>
                     </div>
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="featured-text text-center text-lg-left">
-                            <h4>{{ $art->title }}</h4>
-                            <p class="text-black-50 mb-0" id="articleDescription{{ $loop->iteration }}">
-                                @if (strlen($art->Descriptions) > 100)
-                                    {{ substr($art->Descriptions, 0, 100) }}... <a href="#"
-                                        onclick="showFullDescription({{ $loop->iteration }})">see more</a>
-                                @else
-                                    {{ $art->Descriptions }}
-                                @endif
-                            </p>
-
-                        </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ $art->categoryArticle->name_category_article }}</li>
+                    </ul>
+                    {{-- <div class="card-body">
+                        <a>Created Date: {{ $art->created_date }}</a>
+                        <a>Created Time: {{ $art->created_time }}</a>
+                        <a href="#" class="card-link">see more</a>
+                        <a href="#" class="card-link">Another link</a>
+                    </div> --}}
+                    {{-- <div class="card-footer text-body-secondary">
+                        {{ $art->created_date }} |
+                        {{ $art->created_time }}
+                    </div> --}}
+                    <div class="card-footer">
+                        <!-- Menampilkan tanggal pembuatan artikel dengan pemisah dalam badge Bootstrap -->
+                        <span class="badge bg-secondary">{{ $art->created_date }}</span>
+                        <span class="badge bg-secondary">{{ $art->created_time }}</span>
                     </div>
                 </div>
             @endforeach
         </div>
     </section>
-
-    {{-- galeries --}}
-    <section class="projects-section bg-light" id="galeri">
-        <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
-            <div class="owl-carousel owl-theme">
-                @foreach ($galeries as $galery)
-                    <div class="item">
-                        <img class="img-fluid mb-3 mb-lg-0"
-                            src="{{ asset('storage/' . $galery->image_path_galeries) }}" alt="{{ $galery->title }}"
-                            width="300" height="200" />
-                        <div class="featured-text text-center text-lg-left">
-                            <h4>{{ $galery->title }}</h4>
-                            <p class="text-black-50 mb-0">{{ $galery->categoryGalery->name }}</p>
-                            <!-- You can add more details from the Galery model as needed -->
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
-    <!-- Signup-->
-    {{-- aspiration --}}
-    {{-- <section class="signup-section" id="aspiration">
+    {{-- <section class="projects-section bg-light" id="galeri">
         <div class="container px-4 px-lg-5">
-            <div class="row gx-4 gx-lg-5">
-                <div class="col-md-10 col-lg-8 mx-auto text-center">
-                    <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
-                    <h2 class="text-white mb-5">Subscribe to receive updates!</h2>
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- * * SB Forms Contact Form * *-->
-                    <!-- * * * * * * * * * * * * * * *-->
-                    <!-- This form is pre-integrated with SB Forms.-->
-                    <!-- To make this form functional, sign up at-->
-                    <!-- https://startbootstrap.com/solution/contact-forms-->
-                    <!-- to get an API token!-->
-                    <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                        <!-- Email address input-->
-                        <div class="row input-group-newsletter">
-                            <div class="col"><input class="form-control" id="emailAddress" type="email"
-                                    placeholder="Enter email address..." aria-label="Enter email address..."
-                                    data-sb-validations="required,email" /></div>
-                            <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton"
-                                    type="submit">Notify Me!</button></div>
-                        </div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is
-                            required.</div>
-                        <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.
-                        </div>
-                        <!-- Submit success message-->
-                        <!---->
-                        <!-- This is what your users will see when the form-->
-                        <!-- has successfully submitted-->
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3 mt-2 text-white">
-                                <div class="fw-bolder">Form submission successful!</div>
-                                To activate this form, sign up at
-                                <br />
-                                <a
-                                    href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    @foreach ($galeries as $key => $galery)
+                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                            <img src="{{ asset('storage/' . $galery->image_path_galeries) }}" class="d-block w-100"
+                                alt="{{ $galery->title }}" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ $galery->title }}</h5>
+                                <p>{{ $galery->categoryGalery->name }}</p>
+                                <!-- You can add more details from the Galery model as needed -->
                             </div>
                         </div>
-                        <!-- Submit error message-->
-                        <!---->
-                        <!-- This is what your users will see when there is-->
-                        <!-- an error submitting the form-->
-                        <div class="d-none" id="submitErrorMessage">
-                            <div class="text-center text-danger mb-3 mt-2">Error sending message!</div>
-                        </div>
-                    </form>
+                    @endforeach
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
         </div>
     </section> --}}
-    <section class="projects-section bg-light" id="aspiration">
+
+    <section class="projects-section bg-light" id="galeri">
+        <div class="container px-4 px-lg-5">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                <ol class="carousel-indicators">
+                    @foreach ($galeries as $key => $galery)
+                        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="{{ $key }}"
+                            class="{{ $key === 0 ? 'active' : '' }}"></li>
+                    @endforeach
+                </ol>
+                <div class="carousel-inner">
+                    @foreach ($galeries as $key => $galery)
+                        <div class="carousel-item {{ $key === 0 ? 'active' : '' }}">
+                            <img src="{{ asset('storage/' . $galery->image_path_galeries) }}" class="d-block w-100"
+                                alt="{{ $galery->title }}" />
+                            <div class="carousel-caption d-none d-md-block">
+                                <h5>{{ $galery->title }}</h5>
+                                <p>{{ $galery->categoryGalery->name_category_galerie }}</p>
+                                <!-- You can add more details from the Galery model as needed -->
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    {{-- <section class="projects-section bg-light" id="aspiration">
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5">
                 @if (session('success'))
@@ -224,7 +229,153 @@
                 </div>
             </div>
         </div>
+    </section> --}}
+    {{-- <section class="projects-section bg-light" id="aspiration">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-8">
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h2 class="text-center mb-0">Create New Aspiration</h2>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ url('/Aspiration') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Title</label>
+                                    <input type="text" class="form-control" id="title"
+                                        name="tittle_aspirations" placeholder="Enter aspiration title" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Description</label>
+                                    <textarea class="form-control" id="description" name="description_aspirations" rows="3"
+                                        placeholder="Enter aspiration description" required></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="category" class="form-label">Category</label>
+                                    <select class="form-select" id="category" name="category_aspirations_id"
+                                        required>
+                                        @if ($categories->isEmpty())
+                                            <option value="" disabled>No categories available</option>
+                                        @else
+                                            <option value="">Select category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">
+                                                    {{ $category->name_category_aspirations }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> --}}
+    <section class="projects-section bg-light" id="aspiration">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-8">
+                    @if (session('success'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h2 class="text-center mb-0">Create New Aspiration</h2>
+                        </div>
+                        <div class="card-header bg-primary text-white">
+                            <h6 class="text-center mb-0">Mau tahu tentang form aspirasi ini <span
+                                    data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                        class="fas fa-question-circle"></i></span></h6>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ url('/Aspiration') }}" method="POST">
+                                @csrf
+                                <div class="mb-3">
+                                    <label for="category" class="form-label">kategori Aspirasi</label>
+                                    <select class="form-select" id="category" name="category_aspirations_id"
+                                        required>
+                                        @if ($categories->isEmpty())
+                                            <option value="" disabled>No categories available</option>
+                                        @else
+                                            <option value="">Select category</option>
+                                            @foreach ($categories as $category)
+                                                <option value="{{ $category->id }}">
+                                                    {{ $category->name_category_aspirations }}</option>
+                                            @endforeach
+                                        @endif
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="title" class="form-label">Judul Aspirasi</label>
+                                    <input type="text" class="form-control" id="title"
+                                        name="tittle_aspirations" placeholder="ex: Fasilitas" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="description" class="form-label">Deskripsi Aspirasi</label>
+                                    <textarea class="form-control" id="description" name="description_aspirations" rows="3"
+                                        placeholder="ex: kamar mandi rusak" required></textarea>
+                                </div>
+                                <div class="text-center">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Isi dari modal -->
+                    <h3 class="slogan text-center"><strong>INFO FORM ASPIRASI</strong></h3>
+                    <p>Form ini bersifat anonymous, jadi tidak ada data yang kelihatan.</p>
+                    <p>Aspirasi adalah harapan, cita-cita, atau keinginan yang kuat untuk mencapai sesuatu yang
+                        diinginkan, baik itu untuk diri sendiri maupun untuk orang lain.</p>
+                    <p>Tata Cara Pengisian Form Aspirasi:</p>
+                    <ul>
+                        <li>Isi Kategory Aspirasi yang tersedia</li>
+                        <li>Isi Judul terlebih dahulu</li>
+                        <li>isi deskripsi keluhan</li>
+                        <li>lakukan Submit</li>
+                        <li>Tunggu Jawaban ketika ada perubahan apa yang kalian keluhkan </li>
+                    </ul>
+                    <p>Dengan menggunakan formulir ini, Anda memiliki kesempatan untuk menyuarakan ide-ide dan perasaan
+                        Anda tanpa harus memberikan identitas Anda.</p>
+                    <p>Jangan ragu untuk berbagi aspirasi Anda dengan kami! Isilah formulir di atas dan berikan suara
+                        Anda untuk perubahan yang Anda inginkan.</p>
+                    <h3 class="slogan text-center"><strong>Aspirasi bawahan, Hiburan Para Petinggi!</strong></h3>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
     <!-- Contact-->
     <section class="contact-section bg-black">
@@ -279,7 +430,7 @@
     </section>
     <!-- Footer-->
     <footer class="footer bg-black small text-center text-white-50">
-        <div class="container px-4 px-lg-5">Copyright &copy; Your Website 2023</div>
+        <div class="container px-4 px-lg-5">Copyright &copy; Daffa Aqila Rahmatullah 2024</div>
     </footer>
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
