@@ -16,7 +16,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Superadmin',
+            'name' => 'POD 51',
             'email' => 'superadmin@gmail.com',
             'role' => 'superadmin',
             'password' => bcrypt('password'), // Menggunakan bcrypt untuk mengenkripsi kata sandi
@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
 
         // Admin
         User::create([
-            'name' => 'Admin',
+            'name' => 'POD 52',
             'email' => 'admin@gmail.com',
             'role' => 'admin',
             'password' => bcrypt('password'), // Menggunakan bcrypt untuk mengenkripsi kata sandi

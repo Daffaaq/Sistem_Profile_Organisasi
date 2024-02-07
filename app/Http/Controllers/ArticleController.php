@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Category_article;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
@@ -71,6 +72,7 @@ class ArticleController extends Controller
         // Mengunggah gambar dan mendapatkan path
         $imagePath = $request->file('image_path_article')->store('article_images', 'public');
 
+        $userId = Auth::id();
         // Buat artikel baru dengan data yang diterima dan path gambar yang diunggah
         $article = new Article([
             'title' => $request->title,
@@ -79,6 +81,7 @@ class ArticleController extends Controller
             'created_time' => $request->created_time,
             'image_path_article' => $imagePath, // Path gambar yang diunggah
             'category_articles_id' => $request->category_articles_id,
+            'user_id' => $userId,
         ]);
         $article->save();
 
@@ -104,6 +107,7 @@ class ArticleController extends Controller
             'category_articles_id' => 'required|exists:category_articles,id',
         ]);
 
+        $userId = Auth::id();
         // Temukan artikel berdasarkan ID
         $article = Article::find($id);
 
@@ -130,7 +134,7 @@ class ArticleController extends Controller
             $imagePath = $request->file('image_path_article')->store('article_images', 'public');
             $article->image_path_article = $imagePath;
         }
-
+        $article->user_id = $userId;
         // Simpan perubahan ke dalam database
         $article->save();
 

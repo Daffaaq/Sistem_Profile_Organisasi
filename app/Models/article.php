@@ -17,11 +17,15 @@ class article extends Model
         'created_time',
         'image_path_article',
         'category_articles_id',
+        'user_id'
     ];
 
     public function categoryArticle()
     {
         return $this->belongsTo(category_article::class, 'category_articles_id');
     }
-
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

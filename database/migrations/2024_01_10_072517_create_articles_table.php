@@ -21,9 +21,11 @@ return new class extends Migration
             $table->time('created_time');
             $table->string('image_path_article');
             $table->unsignedBigInteger('category_articles_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
             $table->foreign('category_articles_id')->references('id')->on('category_articles')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
