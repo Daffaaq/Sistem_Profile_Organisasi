@@ -422,9 +422,27 @@
                 </div>
             </div>
             <div class="social d-flex justify-content-center">
-                <a class="mx-2" href="#!"><i class="fab fa-twitter"></i></a>
-                <a class="mx-2" href="#!"><i class="fab fa-facebook-f"></i></a>
-                <a class="mx-2" href="#!"><i class="fab fa-github"></i></a>
+                @foreach ($profile as $p)
+                    <a class="mx-2" href="{{ $p->twitter_url }}"><i class="fab fa-twitter"></i></a>
+                @endforeach
+                @foreach ($profile as $p)
+                    <a class="mx-2" href="{{ $p->facebook_url }}"><i class="fab fa-facebook-f"></i></a>
+                @endforeach
+                @foreach ($profile as $p)
+                    <a class="mx-2" href="{{ $p->instagram_url }}"><i class="fab fa-instagram"></i></a>
+                @endforeach
+                @foreach ($profile as $p)
+                    <a class="mx-2" href="{{ $p->linkedin_url }}"><i class="fab fa-linkedin"></i></a>
+                @endforeach
+                @foreach ($profile as $p)
+                    <a class="mx-2" href="{{ $p->line_url }}"><i class="fab fa-line"></i></a>
+                @endforeach
+                @foreach ($profile as $p)
+                    <a class="mx-2" href="{{ $p->tiktok_url }}"><i class="fab fa-tiktok"></i></a>
+                @endforeach
+                @foreach ($profile as $p)
+                    <a class="mx-2" href="{{ $p->youtube_url }}"><i class="fab fa-youtube"></i></a>
+                @endforeach
             </div>
         </div>
     </section>

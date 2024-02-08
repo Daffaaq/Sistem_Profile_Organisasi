@@ -79,6 +79,13 @@ class ProfileController extends Controller
             'phone_profiles' => 'required',
             'email_profiles' => 'required|email',
             'logo_profiles' => 'required|image|mimes:jpeg,png,jpg,gif|max:100000', // Validasi untuk gambar yang diperlukan
+            'twitter_url' => 'nullable|url',
+            'facebook_url' => 'nullable|url',
+            'instagram_url' => 'nullable|url',
+            'linkedin_url' => 'nullable|url',
+            'line_url' => 'nullable|url',
+            'tiktok_url' => 'nullable|url',
+            'youtube_url' => 'nullable|url',
             // Tambahkan validasi lainnya sesuai kebutuhan
         ]);
 
@@ -130,6 +137,13 @@ class ProfileController extends Controller
             'phone_profiles' => 'required',
             'email_profiles' => 'required|email',
             'logo_profiles' => 'image|mimes:jpeg,png,jpg,gif|max:100000', // Logo tidak wajib diubah setiap saat, jadi tidak perlu required
+            'twitter_url' => 'nullable|url',
+            'facebook_url' => 'nullable|url',
+            'instagram_url' => 'nullable|url',
+            'linkedin_url' => 'nullable|url',
+            'line_url' => 'nullable|url',
+            'tiktok_url' => 'nullable|url',
+            'youtube_url' => 'nullable|url',
             // Tambahkan validasi lainnya sesuai kebutuhan
         ]);
 

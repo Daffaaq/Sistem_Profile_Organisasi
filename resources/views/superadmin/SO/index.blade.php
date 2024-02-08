@@ -12,11 +12,11 @@
     @endif
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Category Article Management</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Structur Organization Management</h6>
         </div>
         <div class="card-body">
             <a href="{{ url('/superadmin/SO/create') }}" class="btn btn-success float-right mb-3">
-                <i class="fas fa-plus"></i> Category Article
+                <i class="fas fa-plus"></i> Structur Organization
             </a>
             <div class="table-responsive">
                 <table class="table table-bordered" id="SOTable" width="100%" cellspacing="0">

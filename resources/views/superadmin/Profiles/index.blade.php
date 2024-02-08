@@ -17,7 +17,7 @@
     @endif
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Users Management</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Profiles Management</h6>
         </div>
         <div class="card-body">
             {{-- <a href="{{ url('/superadmin/Profile/create') }}" class="btn btn-success float-right mb-3">

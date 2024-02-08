@@ -17,5 +17,12 @@ class profile extends Model
         'email_profiles',
         'description_profiles',
         'logo_profiles',
+        'twitter_url',
+        'facebook_url',
+        'instagram_url',
+        'linkedin_url',
+        'line_url',
+        'tiktok_url',
+        'youtube_url',
     ];
 }
