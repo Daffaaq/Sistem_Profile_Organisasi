@@ -81,12 +81,7 @@
     </section>
     <!-- Projects-->
     {{-- articles --}}
-    <section class="projects-section bg-light" id="article">
-        <div style="text-align: right; margin-top: 0px;">
-            <a href="{{ url('landingpage/article') }}" class="btn btn-primary" style="width: 150px; height: 75px;">See
-                more</a>
-
-        </div>
+    {{-- <section class="projects-section bg-light" id="article">
         <div class="container px-4 px-lg-5">
             <div class="row">
                 @foreach ($article as $art)
@@ -119,7 +114,60 @@
                 @endforeach
             </div>
         </div>
+        <div class="text-center" style="margin-top: 0px;">
+            <a href="{{ url('landingpage/article') }}" class="btn btn-primary"
+                style="width: 300px; height: 35px; padding: 0;">
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    Berita Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                </div>
+            </a>
+        </div>
+    </section> --}}
+    <section class="projects-section bg-light" id="article">
+        <div class="container px-4 px-lg-5">
+            <div class="row">
+                @foreach ($article as $art)
+                    <div class="col-lg-4 mb-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ asset('storage/' . $art->image_path_article) }}" class="card-img-top"
+                                alt="{{ $art->title }}" width="350" height="240" />
+                        </div> <br>
+                        <div class="card-title" style="max-width: 350px;">
+                            <h3 style="font-size: 20px; word-wrap: break-word;">{{ $art->title }}</h3>
+                        </div>
+                        {{-- <div class="card" style="width: 18rem;">
+                            <div style="display: flex; flex-wrap: wrap;">
+                                <img src="{{ asset('storage/' . $art->image_path_article) }}" class="card-img-top"
+                                    alt="{{ $art->title }}" width="350" height="250" />
+                            </div>
+                            <div class="card-title" style="max-width: 350px;">
+                                <h3 style="font-size: 20px; word-wrap: break-word;">{{ $art->title }}</h3>
+                            </div>
+                        </div> --}}
+
+
+                        <div class="card-text">
+                            <p>
+                                <a href="#" onclick="showFullDescription({{ $loop->iteration }})">Baca
+                                    Selengkapnya</a>
+                            </p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+        <div class="text-center" style="margin-top: 0px;">
+            <a href="{{ url('landingpage/article') }}" class="btn btn-primary"
+                style="width: 300px; height: 35px; padding: 0;">
+                <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+                    Berita Selengkapnya <i class="fas fa-arrow-right ml-2"></i>
+                </div>
+            </a>
+        </div>
     </section>
+
+
+
 
 
 
