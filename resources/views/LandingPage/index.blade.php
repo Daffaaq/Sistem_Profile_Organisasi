@@ -82,44 +82,47 @@
     <!-- Projects-->
     {{-- articles --}}
     <section class="projects-section bg-light" id="article">
+        <div style="text-align: right; margin-top: 0px;">
+            <a href="{{ url('landingpage/article') }}" class="btn btn-primary" style="width: 150px; height: 75px;">See
+                more</a>
+
+        </div>
         <div class="container px-4 px-lg-5">
-            @foreach ($article as $art)
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('storage/' . $art->image_path_article) }}" class="card-img-top"
-                        alt="{{ $art->title }}" width="300" height="200" />
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $art->title }}</h5>
-                        <p class="card-text">
-                            @if (strlen($art->Descriptions) > 100)
-                                {{ substr($art->Descriptions, 0, 100) }}... <a href="#"
-                                    onclick="showFullDescription({{ $loop->iteration }})">see more</a>
-                            @else
-                                {{ $art->Descriptions }}
-                            @endif
-                        </p>
+            <div class="row">
+                @foreach ($article as $art)
+                    <div class="col-lg-4 mb-4">
+                        <div class="card" style="width: 18rem;">
+                            <img src="{{ asset('storage/' . $art->image_path_article) }}" class="card-img-top"
+                                alt="{{ $art->title }}" width="300" height="200" />
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $art->title }}</h5>
+                                <p class="card-text">
+                                    @if (strlen($art->Descriptions) > 100)
+                                        {{ substr($art->Descriptions, 0, 100) }}... <a href="#"
+                                            onclick="showFullDescription({{ $loop->iteration }})">see more</a>
+                                    @else
+                                        {{ $art->Descriptions }}
+                                    @endif
+                                </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">{{ $art->categoryArticle->name_category_article }}</li>
+                            </ul>
+                            <div class="card-footer">
+                                <!-- Menampilkan tanggal pembuatan artikel dengan pemisah dalam badge Bootstrap -->
+                                <span class="badge bg-secondary">{{ $art->created_date }}</span>
+                                <span class="badge bg-secondary">{{ $art->created_time }}</span>
+                                <span class="badge bg-secondary">{{ $art->user->name }}</span>
+                            </div>
+                        </div>
                     </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{ $art->categoryArticle->name_category_article }}</li>
-                    </ul>
-                    {{-- <div class="card-body">
-                        <a>Created Date: {{ $art->created_date }}</a>
-                        <a>Created Time: {{ $art->created_time }}</a>
-                        <a href="#" class="card-link">see more</a>
-                        <a href="#" class="card-link">Another link</a>
-                    </div> --}}
-                    {{-- <div class="card-footer text-body-secondary">
-                        {{ $art->created_date }} |
-                        {{ $art->created_time }}
-                    </div> --}}
-                    <div class="card-footer">
-                        <!-- Menampilkan tanggal pembuatan artikel dengan pemisah dalam badge Bootstrap -->
-                        <span class="badge bg-secondary">{{ $art->created_date }}</span>
-                        <span class="badge bg-secondary">{{ $art->created_time }}</span>
-                    </div>
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
     </section>
+
+
+
     {{-- <section class="projects-section bg-light" id="galeri">
         <div class="container px-4 px-lg-5">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">

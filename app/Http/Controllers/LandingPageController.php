@@ -18,7 +18,12 @@ class LandingPageController extends Controller
     public function index()
     {
         $profile = Profile::all();
-        $article = Article::all();
+        // $article = Article::all();
+        // Mendapatkan semua artikel dari model atau sumber data lainnya, diurutkan berdasarkan tanggal pembuatan
+        $latestArticles = Article::orderBy('created_date', 'desc')->get();
+
+        // Mengambil 3 artikel terbaru
+        $article = $latestArticles->take(3);
         $galeries = Galery::all();
         $categories = category_aspiration::all();
         return view('LandingPage.index', compact('profile', 'article', 'categories', 'galeries'));
